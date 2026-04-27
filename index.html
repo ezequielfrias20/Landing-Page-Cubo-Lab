@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cubo Lab — Sistemas de IA que escalan tu negocio</title>
+  <meta name="description" content="Implementamos IA, automatización y software a medida para que tu empresa crezca sin depender de más tiempo ni más personal. Agenda tu consultoría gratuita." />
+
+  <!-- Open Graph -->
+  <meta property="og:title"       content="Cubo Lab — Sistemas de IA que escalan tu negocio" />
+  <meta property="og:description" content="Consultoría gratuita de IA para empresas que quieren crecer con sistemas inteligentes." />
+  <meta property="og:type"        content="website" />
+
+  <!-- Favicon placeholder -->
+  <link rel="icon" type="image/png" href="branding.png" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- GSAP CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+
+  <!-- Lenis CDN -->
+  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" defer></script>
+
+  <!-- Main JS -->
+  <script src="main.js" defer></script>
+</head>
+<body>
+
+  <!-- ==================== NAV ==================== -->
+  <nav class="nav" aria-label="Navegación principal">
+    <div class="container">
+      <div class="nav__inner">
+        <a href="#" aria-label="Cubo Lab inicio">
+          <img src="branding.png" alt="Cubo Lab" class="nav__logo" />
+        </a>
+        <a href="#contacto" class="btn btn-primary nav__cta">
+          Consultoría Gratuita
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ==================== HERO ==================== -->
+  <section id="hero" aria-label="Hero">
+    <div class="container">
+      <div class="hero__content">
+
+        <div class="hero__badge">
+          <span class="tag tag-accent">✦ Consultoría de IA Gratuita — Plazas limitadas</span>
+        </div>
+
+        <h1 class="hero__title">
+          Sistemas inteligentes que hacen<br />
+          crecer tu negocio mientras<br />
+          <em>tú haces menos.</em>
+        </h1>
+
+        <p class="hero__subtitle">
+          Implementamos IA, automatización y software a medida para que tu empresa escale
+          sin depender de más tiempo, más personal ni más complejidad.
+        </p>
+
+        <p class="hero__value">
+          No vendemos herramientas. Diseñamos sistemas que generan resultados medibles.
+        </p>
+
+        <div class="hero__actions">
+          <a href="#contacto" class="btn btn-primary btn-lg">
+            Agendar Consultoría Gratuita
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M3 8h10M8 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a href="#producto" class="btn btn-outline">
+            Ver qué incluye
+          </a>
+        </div>
+
+        <p class="hero__scarcity">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <circle cx="7" cy="7" r="6" stroke="#ff5532" stroke-width="1.2"/>
+            <path d="M7 4v4M7 10v.5" stroke="#ff5532" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+          <strong>Solo 3 consultorías gratuitas disponibles este mes.</strong>
+          &nbsp;Quedan 2 plazas.
+        </p>
+
+      </div>
+    </div>
+
+    <div class="hero__scroll" aria-hidden="true">
+      <div class="hero__scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- ==================== PROBLEMA ==================== -->
+  <section id="problema" aria-label="El problema">
+    <div class="container">
+      <div class="problema__grid">
+
+        <div class="problema__text">
+          <span class="section-label" data-animate="fade-up">El problema</span>
+          <h2 class="section-title" data-animate="fade-up" data-delay="0.1">
+            Tu negocio no necesita<br />más esfuerzo.<br />Necesita mejor sistema.
+          </h2>
+          <p data-animate="fade-up" data-delay="0.2">
+            Si tu empresa depende de procesos manuales, decisiones lentas o herramientas
+            desconectadas, estás <strong>perdiendo tiempo, dinero y oportunidades</strong> todos los días.
+          </p>
+          <p data-animate="fade-up" data-delay="0.3">
+            Mientras otros automatizan, optimizan y escalan con IA…<br />
+            <strong>tú sigues resolviendo lo urgente.</strong>
+          </p>
+          <p data-animate="fade-up" data-delay="0.35">
+            No es falta de esfuerzo. Es falta del sistema correcto.
+          </p>
+        </div>
+
+        <div class="problema__card" data-animate="scale-up" data-delay="0.15">
+          <p>
+            "Trabajaba 12 horas al día y el negocio no crecía más rápido.
+            Cuando automatizamos los procesos clave, la empresa escala sola
+            mientras yo me enfoco en lo que realmente importa."
+          </p>
+          <span>— Lo que escuchamos de nuestros clientes</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SOLUCIÓN ==================== -->
+  <section id="solucion" aria-label="Nuestra solución">
+    <div class="container">
+
+      <div class="solucion__intro">
+        <span class="section-label" data-animate="fade-up">La solución</span>
+        <h2 class="section-title" data-animate="fade-up" data-delay="0.1">
+          Convertimos complejidad<br /><em>en crecimiento.</em>
+        </h2>
+        <p class="section-subtitle" data-animate="fade-up" data-delay="0.2">
+          En Cubo Lab diseñamos arquitecturas digitales completas que integran cada capa
+          de tu negocio en un sistema que trabaja para ti las 24 horas.
+        </p>
+      </div>
+
+      <div class="solucion__grid" data-animate-children="scale-up" data-stagger="0.1">
+        <div class="solucion__card">
+          <div class="solucion__icon" aria-hidden="true">🤖</div>
+          <h3>Inteligencia Artificial</h3>
+          <p>Agentes, automatizaciones y decisiones impulsadas por modelos de IA que aprenden de tu negocio.</p>
+        </div>
+        <div class="solucion__card">
+          <div class="solucion__icon" aria-hidden="true">⚡</div>
+          <h3>Automatización de Procesos</h3>
+          <p>Eliminamos tareas repetitivas para que tu equipo se enfoque en lo que genera valor real.</p>
+        </div>
+        <div class="solucion__card">
+          <div class="solucion__icon" aria-hidden="true">💻</div>
+          <h3>Software a Medida</h3>
+          <p>Apps, plataformas internas y herramientas personalizadas construidas para tu operación exacta.</p>
+        </div>
+        <div class="solucion__card">
+          <div class="solucion__icon" aria-hidden="true">📈</div>
+          <h3>Estrategia Digital</h3>
+          <p>No implementamos tecnología sin dirección. Cada sistema está alineado con tus objetivos de negocio.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== PRODUCTO ==================== -->
+  <section id="producto" aria-label="AI Foundation Cube">
+    <div class="container">
+      <div class="producto__inner">
+
+        <!-- Left: content -->
+        <div class="producto__content">
+          <div class="producto__badge-row">
+            <span class="tag tag-accent" data-animate="fade-up">AI Foundation Cube</span>
+            <span class="tag tag-green" data-animate="fade-up" data-delay="0.1">Gratis</span>
+          </div>
+
+          <h2 class="producto__title" data-animate="clip-reveal">
+            El punto de partida para<br />
+            <span>escalar tu negocio con IA.</span>
+          </h2>
+
+          <p class="producto__desc" data-animate="fade-up" data-delay="0.15">
+            Antes de implementar tecnología, necesitas claridad.<br />
+            El <strong>AI Foundation Cube</strong> es una consultoría estratégica de 90 minutos
+            donde analizamos tu negocio, identificamos las oportunidades de automatización
+            con mayor impacto y diseñamos una hoja de ruta clara para escalar con IA.
+          </p>
+
+          <ul class="producto__includes" data-animate-children="stagger-up" data-stagger="0.1">
+            <li>Auditoría completa de tus procesos internos</li>
+            <li>Identificación de las automatizaciones de mayor retorno</li>
+            <li>Oportunidades de IA aplicadas específicamente a tu sector</li>
+            <li>Arquitectura tecnológica recomendada para tu negocio</li>
+            <li>Roadmap de implementación con prioridades claras</li>
+          </ul>
+
+          <div class="producto__result" data-animate="fade-up" data-delay="0.1">
+            Salís con un plan accionable, no con ideas vagas.<br />
+            Tecnología con propósito, no con ruido.
+          </div>
+
+          <a href="#contacto" class="btn btn-primary" data-animate="fade-up" data-delay="0.15">
+            Aplicar para mi consultoría gratuita
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M3 8h10M8 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Right: card -->
+        <div class="producto__side" data-animate="scale-up" data-delay="0.2">
+          <div class="producto__card">
+            <p class="producto__card-eyebrow">AI Foundation Cube</p>
+            <h3 class="producto__card-name">Consultoría Estratégica de IA</h3>
+
+            <div class="producto__price">
+              <span class="producto__price-original">$500 USD</span>
+              <span class="producto__price-free">GRATIS</span>
+            </div>
+            <p class="producto__card-small">Para nuevos clientes — sin compromiso</p>
+
+            <a href="#contacto" class="btn btn-primary">
+              Agendar ahora — Es gratis
+            </a>
+            <p class="producto__card-warning">⚠ Solo quedan 2 plazas este mes</p>
+
+            <div class="producto__card-divider"></div>
+
+            <ul class="producto__mini-list">
+              <li>90 minutos de consultoría personalizada</li>
+              <li>Diagnóstico de tus procesos actuales</li>
+              <li>Roadmap de implementación con IA</li>
+              <li>Sin venta de por medio</li>
+              <li>Sin compromiso ni contratos</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SERVICIOS ==================== -->
+  <section id="servicios" aria-label="Servicios">
+    <div class="container">
+
+      <div class="servicios__header">
+        <div>
+          <span class="section-label" data-animate="fade-up">Servicios</span>
+          <h2 class="section-title" data-animate="fade-up" data-delay="0.1">
+            Diseñamos sistemas,<br />no soluciones aisladas.
+          </h2>
+        </div>
+        <p class="section-subtitle" data-animate="fade-up" data-delay="0.2">
+          Cada servicio está pensado para integrarse con los demás y formar
+          un ecosistema digital que hace crecer tu negocio de forma sostenible.
+        </p>
+      </div>
+
+      <div class="servicios__grid" data-animate-children="stagger-up" data-stagger="0.08">
+        <div class="servicio__card">
+          <div class="servicio__icon" aria-hidden="true">🤖</div>
+          <h3>Chatbots y Agentes con IA</h3>
+          <p>Atención, ventas y soporte funcionando 24/7 sin intervención humana.</p>
+        </div>
+        <div class="servicio__card">
+          <div class="servicio__icon" aria-hidden="true">⚙️</div>
+          <h3>Automatización de Procesos</h3>
+          <p>Reducimos errores, costos y dependencia operativa eliminando trabajo manual.</p>
+        </div>
+        <div class="servicio__card">
+          <div class="servicio__icon" aria-hidden="true">🛠️</div>
+          <h3>Desarrollo de Software</h3>
+          <p>Apps y plataformas internas a medida. Lo que tu negocio necesita, sin limitaciones.</p>
+        </div>
+        <div class="servicio__card">
+          <div class="servicio__icon" aria-hidden="true">📊</div>
+          <h3>CRM y ERP Inteligentes</h3>
+          <p>Centralizamos tu operación para que tomes decisiones con datos reales y en tiempo real.</p>
+        </div>
+        <div class="servicio__card">
+          <div class="servicio__icon" aria-hidden="true">🎯</div>
+          <h3>Estrategia Digital</h3>
+          <p>No hacemos marketing sin dirección. Diseñamos crecimiento sostenible con foco en ROI.</p>
+        </div>
+        <div class="servicio__card">
+          <div class="servicio__icon" aria-hidden="true">🚀</div>
+          <h3>Landing Pages de Alto Rendimiento</h3>
+          <p>Diseñadas para convertir visitantes en clientes, no solo para verse bien.</p>
+        </div>
+        <div class="servicio__card">
+          <div class="servicio__icon" aria-hidden="true">🔭</div>
+          <h3>Consultoría Empresarial</h3>
+          <p>Alineamos tecnología con objetivos de negocio para que cada peso invertido tenga retorno.</p>
+        </div>
+        <div class="servicio__card">
+          <div class="servicio__icon" aria-hidden="true">🔄</div>
+          <h3>Mantenimiento y Evolución</h3>
+          <p>Tu sistema no se queda estático. Evoluciona junto con tu negocio de forma continua.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== PROCESO ==================== -->
+  <section id="proceso" aria-label="Cómo trabajamos">
+    <div class="container">
+
+      <div class="proceso__intro">
+        <span class="section-label" data-animate="fade-up">Cómo trabajamos</span>
+        <h2 class="section-title" data-animate="fade-up" data-delay="0.1">
+          Un proceso claro.<br /><em>Sin improvisación.</em>
+        </h2>
+        <p class="section-subtitle" data-animate="fade-up" data-delay="0.2">
+          Cada proyecto sigue una metodología probada que garantiza resultados medibles
+          desde el primer día de implementación.
+        </p>
+      </div>
+
+      <div class="proceso__steps" data-animate-children="rotate-in" data-stagger="0.12">
+        <div class="proceso__step">
+          <div class="proceso__num" aria-hidden="true">01</div>
+          <h3>Consultoría<br />Estratégica</h3>
+          <p>Entendemos tu negocio en profundidad: procesos, dolores y oportunidades. Aquí empieza todo.</p>
+        </div>
+        <div class="proceso__step">
+          <div class="proceso__num" aria-hidden="true">02</div>
+          <h3>Diseño de<br />Arquitectura</h3>
+          <p>Creamos el sistema ideal para tus objetivos. Tecnología seleccionada, no impuesta.</p>
+        </div>
+        <div class="proceso__step">
+          <div class="proceso__num" aria-hidden="true">03</div>
+          <h3>Implementación<br />Precisa</h3>
+          <p>Desarrollamos, integramos y probamos cada componente antes de salir en producción.</p>
+        </div>
+        <div class="proceso__step">
+          <div class="proceso__num" aria-hidden="true">04</div>
+          <h3>Optimización<br />Continua</h3>
+          <p>Medimos resultados, ajustamos y escalamos. El sistema mejora con el tiempo.</p>
+        </div>
+      </div>
+
+      <div class="proceso__connector" aria-hidden="true"></div>
+
+    </div>
+  </section>
+
+  <!-- ==================== RESULTADOS ==================== -->
+  <section id="resultados" aria-label="Resultados">
+    <div class="container">
+      <div class="resultados__inner">
+
+        <span class="section-label" data-animate="fade-up">La realidad</span>
+
+        <p class="resultados__quote" data-animate="blur-up" data-delay="0.1">
+          Mientras otros lo dejan para mañana,<br />
+          nuestros clientes siguen <span>avanzando.</span>
+        </p>
+
+        <p class="resultados__body" data-animate="fade-up" data-delay="0.2">
+          Mientras tú lo pensás, <strong>otros ya están automatizando.</strong><br />
+          Mientras trabajás más horas, <strong>ellos están escalando con menos esfuerzo.</strong>
+          <br /><br />
+          Nuestros clientes no dependen del esfuerzo constante.<br />
+          Dependen de sistemas que funcionan solos — y eso cambia todo.
+        </p>
+
+        <div class="resultados__cta" data-animate="scale-up" data-delay="0.25">
+          <a href="#contacto" class="btn btn-primary btn-lg">
+            Quiero ese sistema para mi negocio
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M3 8h10M8 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== LÍDER ==================== -->
+  <section id="lider" aria-label="El equipo">
+    <div class="container">
+      <div class="lider__inner">
+
+        <!-- Photo -->
+        <div class="lider__photo-wrap" data-animate="fade-up">
+          <img
+            src="perfil.PNG"
+            alt="Ezequiel Frías — Fundador de Cubo Lab"
+            class="lider__photo-img"
+          />
+          <div class="lider__photo-frame" aria-hidden="true"></div>
+          <div class="lider__photo-accent" aria-hidden="true"></div>
+        </div>
+
+        <!-- Text -->
+        <div class="lider__text" data-animate="fade-up" data-delay="0.15">
+          <span class="tag tag-accent">Detrás del sistema</span>
+
+          <h2 class="lider__headline">
+            Menos herramientas.<br />
+            <em>Más ingeniería.</em>
+          </h2>
+
+          <p class="lider__tagline">
+            Hay criterio detrás de cada sistema que construimos.
+          </p>
+
+          <div class="lider__body">
+            <p>
+              Diseño arquitecturas tecnológicas que resuelven problemas reales de negocio.
+              No creo en soluciones genéricas ni en implementaciones superficiales que parecen
+              modernas pero no generan resultados.
+            </p>
+            <p>
+              Cada sistema que desarrollo está pensado para escalar, adaptarse y generar
+              impacto medible desde el primer mes. No hay magia — hay ingeniería bien aplicada.
+            </p>
+            <p>
+              Trabajo directamente con cada cliente para asegurar que la tecnología no solo
+              funcione, sino que <strong style="color: #fff;">transforme su forma de operar.</strong>
+            </p>
+          </div>
+
+          <div class="lider__firma">
+            <p class="lider__nombre">Ezequiel Frías</p>
+            <p class="lider__titulo">
+              Ingeniero en Telecomunicaciones &nbsp;·&nbsp; Desarrollador de Software<br />
+              Especialista en Inteligencia Artificial
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FAQ ==================== -->
+  <section id="faq" aria-label="Preguntas frecuentes">
+    <div class="container">
+
+      <div class="faq__intro">
+        <span class="section-label" data-animate="fade-up">FAQ</span>
+        <h2 class="section-title" data-animate="fade-up" data-delay="0.1">Preguntas frecuentes</h2>
+        <p class="section-subtitle" data-animate="fade-up" data-delay="0.2">
+          Respondemos las dudas más comunes antes de que empiece la conversación.
+        </p>
+      </div>
+
+      <div class="faq__list" data-animate-children="stagger-up" data-stagger="0.07">
+
+        <div class="faq__item">
+          <button class="faq__question" aria-expanded="false">
+            ¿La consultoría es realmente gratis?
+            <span class="faq__icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq__answer" role="region">
+            <div class="faq__answer-inner">
+              Sí, completamente gratis y sin compromisos. La consultoría inicial vale $500 USD
+              y la ofrecemos sin costo para nuevos clientes porque sabemos que después de 90 minutos
+              contigo, quedará claro si podemos generar valor real para tu negocio. No hay venta de por medio.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq__item">
+          <button class="faq__question" aria-expanded="false">
+            ¿Cuánto tarda una implementación?
+            <span class="faq__icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq__answer" role="region">
+            <div class="faq__answer-inner">
+              Depende del alcance, pero la mayoría de sistemas iniciales se implementan entre 2 y 6 semanas.
+              En la consultoría estratégica definimos el roadmap con tiempos realistas para tu caso específico.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq__item">
+          <button class="faq__question" aria-expanded="false">
+            ¿Esto es solo para empresas grandes?
+            <span class="faq__icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq__answer" role="region">
+            <div class="faq__answer-inner">
+              No. Trabajamos con empresas que quieren crecer inteligentemente, sin importar su tamaño actual.
+              De hecho, las PYMES son las que más impacto ven con la automatización porque liberan
+              recursos que antes estaban atrapados en procesos manuales.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq__item">
+          <button class="faq__question" aria-expanded="false">
+            ¿Qué pasa si ya uso otras herramientas?
+            <span class="faq__icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq__answer" role="region">
+            <div class="faq__answer-inner">
+              Las integramos, optimizamos o reemplazamos si es necesario. Nunca partimos de cero
+              sin evaluar lo que ya existe. Si algo funciona bien, lo potenciamos. Si no está generando
+              valor, lo cambiamos por algo mejor.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq__item">
+          <button class="faq__question" aria-expanded="false">
+            ¿Necesito conocimientos técnicos?
+            <span class="faq__icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq__answer" role="region">
+            <div class="faq__answer-inner">
+              Cero. Nosotros nos encargamos de todo el lado técnico. Vos nos contás tus objetivos
+              de negocio y nosotros traducimos eso en sistemas que funcionan. La tecnología
+              es nuestra responsabilidad; los resultados son tu beneficio.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq__item">
+          <button class="faq__question" aria-expanded="false">
+            ¿Por dónde empiezo?
+            <span class="faq__icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq__answer" role="region">
+            <div class="faq__answer-inner">
+              Por la consultoría estratégica gratuita. Sin claridad sobre tu situación actual,
+              cualquier implementación es un riesgo. La consultoría nos da el diagnóstico
+              necesario para diseñar el sistema correcto para tu negocio.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== ESCASEZ ==================== -->
+  <section id="escasez" aria-label="Disponibilidad limitada">
+    <div class="container">
+      <div class="escasez__inner">
+
+        <div data-animate="scale-up">
+          <div class="escasez__badge">
+            <span class="escasez__dot" aria-hidden="true"></span>
+            Disponibilidad limitada
+          </div>
+        </div>
+
+        <h2 class="escasez__title" data-animate="clip-reveal" data-delay="0.1">
+          No trabajamos<br />con todos.
+        </h2>
+
+        <p class="escasez__body" data-animate="fade-up" data-delay="0.2">
+          Para garantizar resultados reales, solo aceptamos
+          <strong>3 nuevas consultorías estratégicas por mes.</strong>
+          <br /><br />
+          No es una estrategia de marketing.<br />
+          <strong>Es una decisión de calidad.</strong>
+          <br /><br />
+          Trabajar con menos clientes nos permite dedicarle a cada uno
+          la atención y profundidad que su negocio merece.
+        </p>
+
+        <div data-animate="scale-up" data-delay="0.25">
+          <a href="#contacto" class="btn btn-primary btn-lg">
+            Solicitar mi plaza
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M3 8h10M8 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CONTACTO ==================== -->
+  <section id="contacto" aria-label="Agendar consultoría">
+    <div class="container">
+
+      <div class="contacto__inner">
+
+        <!-- Left: text -->
+        <div class="contacto__text">
+          <span class="section-label" data-animate="fade-up">Empezá hoy</span>
+          <h2 class="section-title" data-animate="clip-reveal" data-delay="0.1">
+            ¿Listo para escalar<br />tu negocio <em style="color: var(--accent); font-style: italic;">con IA?</em>
+          </h2>
+          <p class="section-subtitle" data-animate="fade-up" data-delay="0.2">
+            Completá el formulario y te contactamos en menos de 24 horas para coordinar
+            tu consultoría estratégica gratuita.
+          </p>
+
+          <ul class="contacto__features" data-animate-children="stagger-up" data-stagger="0.1">
+            <li>90 minutos de consultoría personalizada sin costo</li>
+            <li>Diagnóstico profundo de tu negocio actual</li>
+            <li>Roadmap de implementación con IA y automatización</li>
+            <li>Sin compromisos ni contratos de por medio</li>
+            <li>Respuesta en menos de 24 horas hábiles</li>
+          </ul>
+        </div>
+
+        <!-- Right: form -->
+        <div data-animate="fade-up" data-delay="0.15">
+          <div class="form__wrap" id="formWrap">
+            <h3 class="form__title">Solicitar consultoría gratuita</h3>
+            <form
+              id="contactForm"
+              action="https://formspree.io/f/ENDPOINT"
+              method="POST"
+              novalidate
+            >
+              <div class="form__row">
+                <div class="form__group">
+                  <label class="form__label" for="nombre">Nombre *</label>
+                  <input
+                    class="form__input"
+                    type="text"
+                    id="nombre"
+                    name="nombre"
+                    placeholder="Tu nombre"
+                    required
+                  />
+                </div>
+                <div class="form__group">
+                  <label class="form__label" for="email">Email *</label>
+                  <input
+                    class="form__input"
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="tu@email.com"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="form__group">
+                <label class="form__label" for="empresa">Empresa</label>
+                <input
+                  class="form__input"
+                  type="text"
+                  id="empresa"
+                  name="empresa"
+                  placeholder="Nombre de tu empresa (opcional)"
+                />
+              </div>
+
+              <div class="form__group">
+                <label class="form__label" for="mensaje">¿Cuál es el principal desafío que quiere resolver? *</label>
+                <textarea
+                  class="form__textarea"
+                  id="mensaje"
+                  name="mensaje"
+                  placeholder="Contanos brevemente el problema o el proceso que más te está costando tiempo o dinero…"
+                  required
+                ></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary form__submit">
+                Agendar Consultoría Gratuita
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="M3 8h10M8 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+
+              <p class="form__note">
+                🔒 Tu información está segura. Nunca hacemos spam.
+              </p>
+            </form>
+          </div>
+
+          <!-- Success state -->
+          <div class="form__wrap form__success" id="formSuccess">
+            <div class="form__success-icon" aria-hidden="true">✅</div>
+            <h3>¡Listo! Te contactamos pronto.</h3>
+            <p>
+              Recibimos tu solicitud. En las próximas 24 horas hábiles
+              te enviamos un email para coordinar la consultoría.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer role="contentinfo">
+    <div class="container">
+      <div class="footer__inner">
+        <a href="#" aria-label="Cubo Lab inicio">
+          <img src="branding.png" alt="Cubo Lab" class="footer__logo" />
+        </a>
+        <p class="footer__copy">
+          © 2026 Cubo Lab. Todos los derechos reservados.
+        </p>
+        <p class="footer__legal">
+          <a href="#">Política de privacidad</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
