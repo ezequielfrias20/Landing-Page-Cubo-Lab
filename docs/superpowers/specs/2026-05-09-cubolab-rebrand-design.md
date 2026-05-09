@@ -82,21 +82,92 @@ Escala fluida:
 
 **Sin emojis** en ninguna parte. Todos los íconos del sitio actual se eliminan.
 
-## 4. Animación
+## 4. Sistema de motion
 
-Sobria, mucho menos densa que la versión actual.
+Motion en toda la landing siguiendo el lenguaje de **Apple HIG + Linear + Framer + Stripe**:
+**lento, suave, preciso, con easing elegante, sin rebotes, sin efectos "startup genérica"**.
 
-**Mantener:** GSAP + ScrollTrigger + Lenis (ya cargados via CDN).
+**Stack:** GSAP + ScrollTrigger + Lenis (ya cargados via CDN).
 
-**Solo 2 patterns:**
-- `fade-up` — `{y:24, opacity:0}` → `{y:0, opacity:1}`, duración `1.1s`, ease `power3.out`.
-- `clip-reveal` — `{clipPath:'inset(100% 0 0 0)'}` → `{clipPath:'inset(0)'}`, duración `1.4s`, ease `power4.out`. **Solo en headlines h1/h2.**
+### 4.1 Principios
 
-**Eliminar:** scale-up, rotate-in, blur-up, stagger-up explícito en grids, hero badges animados.
+1. **Lento e intencional.** Duraciones entre `0.9s` y `1.6s` para entradas. Nunca `0.3s` snappy de "framework default".
+2. **Easing curado, sin bounce.** Una sola curva primaria + una secundaria. Cero `back.out`, cero `elastic`, cero overshoot.
+3. **Movimiento corto.** Translaciones máximas `24-32px`. Escalas máximas `0.96 → 1`. Nada de sliding 100vw ni rotaciones grandes.
+4. **Una animación por unidad.** Cada elemento tiene una sola transformación primaria. Si algo necesita 3 propiedades, las animamos juntas con un único easing y duración.
+5. **Stagger sutil.** Entre `60ms` y `120ms` entre items consecutivos. Nunca `0.3s+` que se siente "cascada".
+6. **El scroll es el motor.** Lenis con `duration: 1.2`, easing exponencial. Da el "buttery smooth" tipo Linear / Apple Newsroom.
+7. **Sin parallax decorativo, sin floating icons, sin gradientes en movimiento, sin loaders animados.** Si la animación no es funcional o expresiva, no existe.
+8. **Respeta `prefers-reduced-motion`** — desactivar todo excepto `opacity`.
 
-**Hero sin ScrollTrigger** (per cubo-web skill anti-pattern): CSS `@keyframes` con delays escalonados al cargar (eyebrow → h1 → subtítulo → CTA).
+### 4.2 Easing curves
 
-**Cada sección tiene UNA animación** principal, no múltiples capas que compiten.
+```css
+--ease-out-quint:  cubic-bezier(0.22, 1, 0.36, 1);   /* primary  — Apple/Linear */
+--ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1); /* secondary — para pinned scrub */
+```
+
+GSAP equivalentes: `CustomEase.create("primary","M0,0 C0.22,1 0.36,1 1,1")` o usar `power4.out` (aproximación aceptable sin CustomEase plugin).
+
+### 4.3 Patterns globales
+
+| Pattern | Transform | Duración | Ease | Uso |
+|---|---|---|---|---|
+| `reveal-text` | `clipPath: inset(100% 0 0 0)` → `inset(0)` + `y: 16 → 0` | `1.4s` | `ease-in-out-quart` | h1, h2 — headlines serif. |
+| `fade-up` | `y: 24 → 0`, `opacity: 0 → 1` | `1.1s` | `ease-out-quint` | Body copy, eyebrows, párrafos. |
+| `fade-in` | `opacity: 0 → 1` | `0.9s` | `ease-out-quint` | Imágenes, cards, divisores. |
+| `scale-soft` | `scale: 0.96 → 1`, `opacity: 0 → 1` | `1.2s` | `ease-out-quint` | Foto líder, cubo Foundation. |
+| `stagger-rows` | hijos con `fade-up` desfasados `80ms` | `1.1s` cada uno | `ease-out-quint` | Capabilities, deliverables, FAQ items, form fields. |
+
+### 4.4 Animaciones por sección
+
+| Sección | Animación al entrar |
+|---|---|
+| **Hero** | Carga inmediata vía CSS `@keyframes`. Secuencia: eyebrow `fade-up` (delay 0.1s) → h1 `reveal-text` (delay 0.3s) → subtítulo `fade-up` (delay 0.9s) → CTA `fade-up` (delay 1.15s). **Sin ScrollTrigger** (per cubo-web anti-pattern). |
+| **Manifesto** | h2 `reveal-text` + body `fade-up` + 3 principios `stagger-rows` (80ms entre cada uno). |
+| **Capabilities** | Eyebrow + h2 `reveal-text`. Lista `01-08` `stagger-rows` (60ms apart — más rápido por ser 8 items). |
+| **Foundation Cube** | h2 `reveal-text`. Cubo `scale-soft`. 5 deliverables `stagger-rows` (100ms). CTA `fade-up`. |
+| **The Engineer** (dark) | Foto `scale-soft` (lado izq, delay 0). Quote `reveal-text` (delay 0.2s). Bio párrafos `stagger-rows` (delay 0.5s, 100ms apart). Firma `fade-up`. |
+| **FAQ** | Eyebrow + h2 `reveal-text`. Items `stagger-rows` (80ms). Apertura: animación nativa CSS sobre `<details>` con `interpolate-size: allow-keywords` + `transition: height` para height auto, easing `ease-out-quint`, duración `0.5s`. |
+| **Apply** | h2 `reveal-text`. Subtítulo `fade-up`. Form fields `stagger-rows` (70ms). Botón submit `fade-up` final. |
+
+### 4.5 Micro-interacciones (siempre activas, sin scroll)
+
+- **Botón primario hover:** `background: var(--ink) → var(--ink-soft)`, transición `0.4s ease-out-quint`. Flecha `→` se desplaza `4px` a la derecha.
+- **Link / nav hover:** `text-decoration` simulado con `border-bottom` que crece de `0% → 100%` en `0.5s ease-in-out-quart`. (Stripe-style underline reveal.)
+- **Form input focus:** `border-bottom-color: --rule → --ink`, transición `0.5s ease-in-out-quart`. Label asociada cambia `color: --muted → --ink` con misma curva.
+- **Nav sticky:** Hide-on-scroll-down / show-on-scroll-up estilo Linear. Translación `y: 0 → -100%` en `0.5s ease-in-out-quart`. Background `transparent → rgba(250,250,247,0.85)` con `backdrop-filter: blur(12px)` cuando scroll > 80px.
+- **Cursor sobre cubo Foundation:** rotación CSS sutil `rotateY: 0 → 6deg` en `1s ease-out-quint`. Solo desktop, no mobile.
+- **FAQ `+` indicator:** rotación `0deg → 45deg` en `0.4s ease-out-quint` cuando se abre.
+
+### 4.6 Lenis config
+
+```js
+new Lenis({
+  duration: 1.2,
+  easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // exponential out
+  smoothWheel: true,
+  wheelMultiplier: 1,
+  touchMultiplier: 1.5,
+});
+```
+
+### 4.7 Anti-patterns explícitos (qué evitar)
+
+- Bounces, springs visibles, rotaciones grandes, escalas `> 1`.
+- Parallax decorativo de imágenes / gradientes.
+- Loaders / skeletons animados (no aplica — todo es estático).
+- Animación de números (counters subiendo de 0 a N).
+- Hovers que cambian de color saturado a otro saturado.
+- Cualquier animación de hero con ScrollTrigger en `progress: 0` (anti-pattern documentado en cubo-web skill).
+- Confetti, partículas, blob morphing, gradientes animados.
+- Múltiples elementos compitiendo en una misma sección con animaciones simultáneas distintas.
+
+### 4.8 Performance
+
+- `will-change` solo en elementos animándose en ese momento, removido al terminar.
+- Transformaciones siempre `transform` + `opacity` (compositor-only).
+- ScrollTrigger con `once: true` para entradas — no re-animar al volver a entrar.
 
 ## 5. Archivos afectados
 
@@ -130,5 +201,6 @@ Sobria, mucho menos densa que la versión actual.
 - Cero color amarillo en el render final.
 - Headlines en serif Fraunces, body en Inter Tight.
 - Sección "The Engineer" inverte a fondo negro; el resto en off-white.
-- Animaciones sutiles, sin sensación de "demasiado pasando".
+- Animaciones lentas, suaves, precisas — lenguaje Apple/Linear/Stripe. Cero bounces, cero efectos genéricos. Cada sección anima al entrar; micro-interacciones consistentes en links, botones, form e indicador FAQ.
+- `prefers-reduced-motion` desactiva todo excepto opacidad.
 - Form envía a Formspree (con ENDPOINT placeholder) y muestra estado de éxito.
