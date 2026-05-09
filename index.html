@@ -3,21 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cubo Lab — Sistemas de IA que escalan tu negocio</title>
-  <meta name="description" content="Implementamos IA, automatización y software a medida para que tu empresa crezca sin depender de más tiempo ni más personal. Agenda tu consultoría gratuita." />
+  <title>Cubo Labs — Independent venture studio for engineered AI systems</title>
+  <meta name="description" content="Cubo Labs designs engineered AI systems for companies that refuse to scale by working harder. Apply for a Foundation session." />
 
   <!-- Open Graph -->
-  <meta property="og:title"       content="Cubo Lab — Sistemas de IA que escalan tu negocio" />
-  <meta property="og:description" content="Consultoría gratuita de IA para empresas que quieren crecer con sistemas inteligentes." />
+  <meta property="og:title"       content="Cubo Labs — Independent venture studio" />
+  <meta property="og:description" content="Engineered AI systems for companies that refuse to scale by working harder." />
   <meta property="og:type"        content="website" />
 
-  <!-- Favicon placeholder -->
-  <link rel="icon" type="image/png" href="branding.png" />
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/branding.png" />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet" />
 
   <!-- Styles -->
   <link rel="stylesheet" href="styles.css" />
@@ -35,73 +35,35 @@
 <body>
 
   <!-- ==================== NAV ==================== -->
-  <nav class="nav" aria-label="Navegación principal">
-    <div class="container">
-      <div class="nav__inner">
-        <a href="#" aria-label="Cubo Lab inicio">
-          <img src="branding.png" alt="Cubo Lab" class="nav__logo" />
-        </a>
-        <a href="#contacto" class="btn btn-primary nav__cta">
-          Consultoría Gratuita
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-            <path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </a>
-      </div>
+  <header class="nav" id="nav" aria-label="Navegación principal">
+    <div class="container nav__inner">
+      <a class="nav__brand" href="#" aria-label="Cubo Labs inicio">
+        <img src="assets/branding.png" alt="" class="nav__logo" />
+        <span class="nav__wordmark">cubo labs.</span>
+      </a>
+      <a class="nav__cta link" href="#apply">Apply</a>
     </div>
-  </nav>
+  </header>
 
   <!-- ==================== HERO ==================== -->
-  <section id="hero" aria-label="Hero">
-    <div class="container">
-      <div class="hero__content">
+  <section id="hero" class="hero" aria-label="Hero">
+    <div class="container hero__inner">
+      <span class="eyebrow hero__eyebrow"><span class="num">—</span> Cubo Labs · Independent venture studio</span>
 
-        <div class="hero__badge">
-          <span class="tag tag-accent">✦ Consultoría de IA Gratuita — Plazas limitadas</span>
-        </div>
+      <h1 class="hero__title">
+        <span class="reveal-line"><span>Sistemas de ingeniería</span></span>
+        <span class="reveal-line"><span>para empresas que se niegan</span></span>
+        <span class="reveal-line"><span>a crecer <em>trabajando más.</em></span></span>
+      </h1>
 
-        <h1 class="hero__title">
-          Sistemas inteligentes que hacen<br />
-          crecer tu negocio mientras<br />
-          <em>tú haces menos.</em>
-        </h1>
+      <p class="hero__sub">Diseñamos arquitecturas de IA, automatización y software a medida — sin herramientas innecesarias, sin promesas vacías.</p>
 
-        <p class="hero__subtitle">
-          Implementamos IA, automatización y software a medida para que tu empresa escale
-          sin depender de más tiempo, más personal ni más complejidad.
-        </p>
-
-        <p class="hero__value">
-          No vendemos herramientas. Diseñamos sistemas que generan resultados medibles.
-        </p>
-
-        <div class="hero__actions">
-          <a href="#contacto" class="btn btn-primary btn-lg">
-            Agendar Consultoría Gratuita
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-              <path d="M3 8h10M8 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </a>
-          <a href="#producto" class="btn btn-outline">
-            Ver qué incluye
-          </a>
-        </div>
-
-        <p class="hero__scarcity">
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-            <circle cx="7" cy="7" r="6" stroke="#ff5532" stroke-width="1.2"/>
-            <path d="M7 4v4M7 10v.5" stroke="#ff5532" stroke-width="1.2" stroke-linecap="round"/>
-          </svg>
-          <strong>Solo 3 consultorías gratuitas disponibles este mes.</strong>
-          &nbsp;Quedan 2 plazas.
-        </p>
-
+      <div class="hero__actions">
+        <a href="#apply" class="btn btn-primary">
+          Apply for a Foundation session
+          <span class="arrow" aria-hidden="true">→</span>
+        </a>
       </div>
-    </div>
-
-    <div class="hero__scroll" aria-hidden="true">
-      <div class="hero__scroll-line"></div>
-      <span>Scroll</span>
     </div>
   </section>
 
