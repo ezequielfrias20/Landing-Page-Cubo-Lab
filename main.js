@@ -89,8 +89,106 @@
     document.querySelectorAll('.js-stagger').forEach((el) => staggerChildren(el, 0.08));
   }
 
+  /* ---------- Nav: hide on scroll-down, show on scroll-up ---------- */
+  function initNav() {
+    const nav = document.getElementById('nav');
+    if (!nav) return;
+    let lastY = window.scrollY;
+    let ticking = false;
+
+    function update() {
+      const y = window.scrollY;
+      nav.classList.toggle('is-scrolled', y > 80);
+      if (y > 120 && y > lastY) {
+        nav.classList.add('is-hidden');
+      } else {
+        nav.classList.remove('is-hidden');
+      }
+      lastY = y;
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(update);
+        ticking = true;
+      }
+    }, { passive: true });
+    update();
+  }
+
+  /* ---------- FAQ smooth height transition ---------- */
+  function initFAQ() {
+    document.querySelectorAll('.faq__item').forEach((item) => {
+      const summary = item.querySelector('summary');
+      const answer = item.querySelector('.faq__a');
+      if (!summary || !answer) return;
+
+      summary.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (item.open) {
+          gsap.to(answer, {
+            height: 0, opacity: 0, duration: 0.5, ease: EASE,
+            onComplete: () => { item.open = false; gsap.set(answer, { clearProps: 'all' }); },
+          });
+        } else {
+          item.open = true;
+          gsap.set(answer, { height: 'auto', opacity: 1 });
+          const h = answer.offsetHeight;
+          gsap.fromTo(answer,
+            { height: 0, opacity: 0 },
+            { height: h, opacity: 1, duration: 0.5, ease: EASE,
+              onComplete: () => gsap.set(answer, { clearProps: 'height' }) }
+          );
+        }
+      });
+    });
+  }
+
+  /* ---------- Form: async submit to Formspree + success state ---------- */
+  function initForm() {
+    const form = document.getElementById('contactForm');
+    const success = document.getElementById('formSuccess');
+    if (!form || !success) return;
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const originalText = submitBtn.innerHTML;
+      submitBtn.innerHTML = 'Sending…';
+      submitBtn.disabled = true;
+
+      try {
+        const data = new FormData(form);
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: data,
+          headers: { Accept: 'application/json' },
+        });
+
+        if (res.ok) {
+          form.classList.add('is-hidden');
+          success.hidden = false;
+          gsap.fromTo(success,
+            { y: 24, opacity: 0 },
+            { y: 0, opacity: 1, duration: 1.1, ease: EASE }
+          );
+        } else {
+          throw new Error('Network error');
+        }
+      } catch (err) {
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+        alert('No pudimos enviar el formulario. Intentá nuevamente o escribinos a ezequieljfrias20@gmail.com');
+      }
+    });
+  }
+
   /* ---------- Init ---------- */
   document.addEventListener('DOMContentLoaded', () => {
     initReveals();
+    initNav();
+    initFAQ();
+    initForm();
   });
 })();

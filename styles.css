@@ -340,8 +340,9 @@ section { padding-block: var(--section-y); }
   padding-block: 0 clamp(1.25rem, 2.5vw, 1.75rem);
 }
 
-/* Smooth open/close — animate via grid trick for height auto */
-.faq__item:not([open]) .faq__a { display: none; }
+/* Smooth open/close — GSAP drives height; CSS provides initial state */
+.faq__item:not([open]) .faq__a { height: 0; overflow: hidden; opacity: 0; padding-block: 0; }
+.faq__item .faq__a { overflow: hidden; transition: padding-block 0.5s var(--ease-out-quint); will-change: height; }
 
 /* ============================================================
    Apply (form)
