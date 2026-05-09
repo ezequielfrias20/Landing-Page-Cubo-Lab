@@ -278,103 +278,56 @@
   </section>
 
   <!-- ==================== FAQ ==================== -->
-  <section id="faq" aria-label="Preguntas frecuentes">
-    <div class="container">
+  <section id="faq" class="faq" aria-label="Preguntas frecuentes">
+    <div class="container faq__inner">
 
-      <div class="faq__intro">
-        <span class="section-label" data-animate="fade-up">FAQ</span>
-        <h2 class="section-title" data-animate="fade-up" data-delay="0.1">Preguntas frecuentes</h2>
-        <p class="section-subtitle" data-animate="fade-up" data-delay="0.2">
-          Respondemos las dudas más comunes antes de que empiece la conversación.
-        </p>
+      <header class="faq__head">
+        <span class="eyebrow"><span class="num">— 05</span> Frequently Asked</span>
+        <h2 class="faq__title js-reveal">Preguntas frecuentes.</h2>
+      </header>
+
+      <div class="faq__list js-stagger">
+        <details class="faq__item">
+          <summary>
+            <span class="faq__q">¿La sesión Foundation es realmente gratis?</span>
+            <span class="faq__plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="faq__a">Sí. La sesión inicial vale USD 500 y la ofrecemos sin costo a nuevos clientes. Después de 90 minutos juntos queda claro si tiene sentido seguir trabajando — sin venta de por medio.</div>
+        </details>
+
+        <details class="faq__item">
+          <summary>
+            <span class="faq__q">¿Cuánto tarda una implementación completa?</span>
+            <span class="faq__plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="faq__a">Depende del alcance. La mayoría de los sistemas iniciales se implementan entre 2 y 6 semanas. En la sesión Foundation definimos tiempos realistas para tu caso específico.</div>
+        </details>
+
+        <details class="faq__item">
+          <summary>
+            <span class="faq__q">¿Trabajan con empresas pequeñas o solo con grandes?</span>
+            <span class="faq__plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="faq__a">Trabajamos con empresas que quieran crecer con sistemas, sin importar tamaño. Las PYMES suelen ver el mayor impacto porque liberan recursos atrapados en procesos manuales.</div>
+        </details>
+
+        <details class="faq__item">
+          <summary>
+            <span class="faq__q">¿Qué pasa con las herramientas que ya estoy usando?</span>
+            <span class="faq__plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="faq__a">Las integramos, optimizamos o reemplazamos según corresponda. Nunca partimos de cero sin evaluar lo que ya existe.</div>
+        </details>
+
+        <details class="faq__item">
+          <summary>
+            <span class="faq__q">¿Necesito conocimientos técnicos para empezar?</span>
+            <span class="faq__plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="faq__a">Cero. Vos describís los objetivos del negocio; nosotros traducimos eso en sistemas que funcionan. La tecnología es nuestra responsabilidad.</div>
+        </details>
       </div>
 
-      <div class="faq__list" data-animate-children="stagger-up" data-stagger="0.07">
-
-        <div class="faq__item">
-          <button class="faq__question" aria-expanded="false">
-            ¿La consultoría es realmente gratis?
-            <span class="faq__icon" aria-hidden="true">+</span>
-          </button>
-          <div class="faq__answer" role="region">
-            <div class="faq__answer-inner">
-              Sí, completamente gratis y sin compromisos. La consultoría inicial vale $500 USD
-              y la ofrecemos sin costo para nuevos clientes porque sabemos que después de 90 minutos
-              contigo, quedará claro si podemos generar valor real para tu negocio. No hay venta de por medio.
-            </div>
-          </div>
-        </div>
-
-        <div class="faq__item">
-          <button class="faq__question" aria-expanded="false">
-            ¿Cuánto tarda una implementación?
-            <span class="faq__icon" aria-hidden="true">+</span>
-          </button>
-          <div class="faq__answer" role="region">
-            <div class="faq__answer-inner">
-              Depende del alcance, pero la mayoría de sistemas iniciales se implementan entre 2 y 6 semanas.
-              En la consultoría estratégica definimos el roadmap con tiempos realistas para tu caso específico.
-            </div>
-          </div>
-        </div>
-
-        <div class="faq__item">
-          <button class="faq__question" aria-expanded="false">
-            ¿Esto es solo para empresas grandes?
-            <span class="faq__icon" aria-hidden="true">+</span>
-          </button>
-          <div class="faq__answer" role="region">
-            <div class="faq__answer-inner">
-              No. Trabajamos con empresas que quieren crecer inteligentemente, sin importar su tamaño actual.
-              De hecho, las PYMES son las que más impacto ven con la automatización porque liberan
-              recursos que antes estaban atrapados en procesos manuales.
-            </div>
-          </div>
-        </div>
-
-        <div class="faq__item">
-          <button class="faq__question" aria-expanded="false">
-            ¿Qué pasa si ya uso otras herramientas?
-            <span class="faq__icon" aria-hidden="true">+</span>
-          </button>
-          <div class="faq__answer" role="region">
-            <div class="faq__answer-inner">
-              Las integramos, optimizamos o reemplazamos si es necesario. Nunca partimos de cero
-              sin evaluar lo que ya existe. Si algo funciona bien, lo potenciamos. Si no está generando
-              valor, lo cambiamos por algo mejor.
-            </div>
-          </div>
-        </div>
-
-        <div class="faq__item">
-          <button class="faq__question" aria-expanded="false">
-            ¿Necesito conocimientos técnicos?
-            <span class="faq__icon" aria-hidden="true">+</span>
-          </button>
-          <div class="faq__answer" role="region">
-            <div class="faq__answer-inner">
-              Cero. Nosotros nos encargamos de todo el lado técnico. Vos nos contás tus objetivos
-              de negocio y nosotros traducimos eso en sistemas que funcionan. La tecnología
-              es nuestra responsabilidad; los resultados son tu beneficio.
-            </div>
-          </div>
-        </div>
-
-        <div class="faq__item">
-          <button class="faq__question" aria-expanded="false">
-            ¿Por dónde empiezo?
-            <span class="faq__icon" aria-hidden="true">+</span>
-          </button>
-          <div class="faq__answer" role="region">
-            <div class="faq__answer-inner">
-              Por la consultoría estratégica gratuita. Sin claridad sobre tu situación actual,
-              cualquier implementación es un riesgo. La consultoría nos da el diagnóstico
-              necesario para diseñar el sistema correcto para tu negocio.
-            </div>
-          </div>
-        </div>
-
-      </div>
     </div>
   </section>
 
