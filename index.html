@@ -331,154 +331,57 @@
     </div>
   </section>
 
-  <!-- ==================== ESCASEZ ==================== -->
-  <section id="escasez" aria-label="Disponibilidad limitada">
-    <div class="container">
-      <div class="escasez__inner">
+  <!-- ==================== APPLY ==================== -->
+  <section id="apply" class="apply" aria-label="Apply">
+    <div class="container apply__inner">
 
-        <div data-animate="scale-up">
-          <div class="escasez__badge">
-            <span class="escasez__dot" aria-hidden="true"></span>
-            Disponibilidad limitada
-          </div>
+      <header class="apply__head">
+        <span class="eyebrow"><span class="num">— 06</span> Apply</span>
+        <h2 class="apply__title js-reveal">Apply for a<br /><em>Foundation session.</em></h2>
+        <p class="apply__sub js-fade-up">Completá los campos y te contactamos en menos de 24 horas hábiles.</p>
+      </header>
+
+      <form
+        id="contactForm"
+        class="apply__form js-stagger"
+        action="https://formspree.io/f/ENDPOINT"
+        method="POST"
+        novalidate
+      >
+        <div class="field">
+          <label class="field__label" for="nombre">Nombre</label>
+          <input class="field__input" type="text" id="nombre" name="nombre" required />
         </div>
 
-        <h2 class="escasez__title" data-animate="clip-reveal" data-delay="0.1">
-          No trabajamos<br />con todos.
-        </h2>
-
-        <p class="escasez__body" data-animate="fade-up" data-delay="0.2">
-          Para garantizar resultados reales, solo aceptamos
-          <strong>3 nuevas consultorías estratégicas por mes.</strong>
-          <br /><br />
-          No es una estrategia de marketing.<br />
-          <strong>Es una decisión de calidad.</strong>
-          <br /><br />
-          Trabajar con menos clientes nos permite dedicarle a cada uno
-          la atención y profundidad que su negocio merece.
-        </p>
-
-        <div data-animate="scale-up" data-delay="0.25">
-          <a href="#contacto" class="btn btn-primary btn-lg">
-            Solicitar mi plaza
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-              <path d="M3 8h10M8 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </a>
+        <div class="field">
+          <label class="field__label" for="email">Email</label>
+          <input class="field__input" type="email" id="email" name="email" required />
         </div>
 
+        <div class="field">
+          <label class="field__label" for="empresa">Empresa <span class="field__hint">(opcional)</span></label>
+          <input class="field__input" type="text" id="empresa" name="empresa" />
+        </div>
+
+        <div class="field">
+          <label class="field__label" for="mensaje">¿Cuál es el principal desafío que querés resolver?</label>
+          <textarea class="field__input field__textarea" id="mensaje" name="mensaje" rows="4" required></textarea>
+        </div>
+
+        <div class="apply__submit">
+          <button type="submit" class="btn btn-primary">
+            Submit application
+            <span class="arrow" aria-hidden="true">→</span>
+          </button>
+          <p class="apply__legal">Tu información está segura. Nunca enviamos spam.</p>
+        </div>
+      </form>
+
+      <div class="apply__success" id="formSuccess" hidden>
+        <h3>Recibido.</h3>
+        <p>En las próximas 24 horas hábiles te contactamos para coordinar la sesión.</p>
       </div>
-    </div>
-  </section>
 
-  <!-- ==================== CONTACTO ==================== -->
-  <section id="contacto" aria-label="Agendar consultoría">
-    <div class="container">
-
-      <div class="contacto__inner">
-
-        <!-- Left: text -->
-        <div class="contacto__text">
-          <span class="section-label" data-animate="fade-up">Empezá hoy</span>
-          <h2 class="section-title" data-animate="clip-reveal" data-delay="0.1">
-            ¿Listo para escalar<br />tu negocio <em style="color: var(--accent); font-style: italic;">con IA?</em>
-          </h2>
-          <p class="section-subtitle" data-animate="fade-up" data-delay="0.2">
-            Completá el formulario y te contactamos en menos de 24 horas para coordinar
-            tu consultoría estratégica gratuita.
-          </p>
-
-          <ul class="contacto__features" data-animate-children="stagger-up" data-stagger="0.1">
-            <li>90 minutos de consultoría personalizada sin costo</li>
-            <li>Diagnóstico profundo de tu negocio actual</li>
-            <li>Roadmap de implementación con IA y automatización</li>
-            <li>Sin compromisos ni contratos de por medio</li>
-            <li>Respuesta en menos de 24 horas hábiles</li>
-          </ul>
-        </div>
-
-        <!-- Right: form -->
-        <div data-animate="fade-up" data-delay="0.15">
-          <div class="form__wrap" id="formWrap">
-            <h3 class="form__title">Solicitar consultoría gratuita</h3>
-            <form
-              id="contactForm"
-              action="https://formspree.io/f/ENDPOINT"
-              method="POST"
-              novalidate
-            >
-              <div class="form__row">
-                <div class="form__group">
-                  <label class="form__label" for="nombre">Nombre *</label>
-                  <input
-                    class="form__input"
-                    type="text"
-                    id="nombre"
-                    name="nombre"
-                    placeholder="Tu nombre"
-                    required
-                  />
-                </div>
-                <div class="form__group">
-                  <label class="form__label" for="email">Email *</label>
-                  <input
-                    class="form__input"
-                    type="email"
-                    id="email"
-                    name="email"
-                    placeholder="tu@email.com"
-                    required
-                  />
-                </div>
-              </div>
-
-              <div class="form__group">
-                <label class="form__label" for="empresa">Empresa</label>
-                <input
-                  class="form__input"
-                  type="text"
-                  id="empresa"
-                  name="empresa"
-                  placeholder="Nombre de tu empresa (opcional)"
-                />
-              </div>
-
-              <div class="form__group">
-                <label class="form__label" for="mensaje">¿Cuál es el principal desafío que quiere resolver? *</label>
-                <textarea
-                  class="form__textarea"
-                  id="mensaje"
-                  name="mensaje"
-                  placeholder="Contanos brevemente el problema o el proceso que más te está costando tiempo o dinero…"
-                  required
-                ></textarea>
-              </div>
-
-              <button type="submit" class="btn btn-primary form__submit">
-                Agendar Consultoría Gratuita
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                  <path d="M3 8h10M8 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </button>
-
-              <p class="form__note">
-                🔒 Tu información está segura. Nunca hacemos spam.
-              </p>
-            </form>
-          </div>
-
-          <!-- Success state -->
-          <div class="form__wrap form__success" id="formSuccess">
-            <div class="form__success-icon" aria-hidden="true">✅</div>
-            <h3>¡Listo! Te contactamos pronto.</h3>
-            <p>
-              Recibimos tu solicitud. En las próximas 24 horas hábiles
-              te enviamos un email para coordinar la consultoría.
-            </p>
-          </div>
-        </div>
-
-      </div>
     </div>
   </section>
 
