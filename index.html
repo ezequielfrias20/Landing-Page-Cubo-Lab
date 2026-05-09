@@ -47,16 +47,40 @@
 
   <!-- ==================== HERO ==================== -->
   <section id="hero" class="hero" aria-label="Hero">
+    <canvas class="hero__canvas" id="hero-canvas" aria-hidden="true"></canvas>
     <div class="container hero__inner">
       <span class="eyebrow hero__eyebrow"><span class="num">—</span> Cubo Labs · Independent venture studio</span>
 
-      <h1 class="hero__title">
-        <span class="reveal-line"><span>Sistemas de ingeniería</span></span>
-        <span class="reveal-line"><span>para empresas que se niegan</span></span>
-        <span class="reveal-line"><span>a crecer <em>trabajando más.</em></span></span>
-      </h1>
+      <div class="hero__title-block">
+        <span class="hero__plus hero__plus--tl" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 4v16M4 12h16" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg>
+        </span>
+        <span class="hero__plus hero__plus--tr" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 4v16M4 12h16" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg>
+        </span>
+        <span class="hero__plus hero__plus--bl" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 4v16M4 12h16" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg>
+        </span>
+        <span class="hero__plus hero__plus--br" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 4v16M4 12h16" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg>
+        </span>
+        <h1 class="hero__title">
+          <span class="reveal-line"><span>Sistemas de ingeniería</span></span>
+          <span class="reveal-line"><span>para empresas que se niegan</span></span>
+          <span class="reveal-line"><span>a crecer <em>trabajando más.</em></span></span>
+        </h1>
+      </div>
 
-      <p class="hero__sub">Diseñamos arquitecturas de IA, automatización y software a medida — sin herramientas innecesarias, sin promesas vacías.</p>
+      <p class="hero__sub">
+        Diseñamos arquitecturas de
+        <span class="hero__typewriter" data-words="IA aplicada|automatización|software a medida|estrategia digital">IA aplicada</span>
+        — sin herramientas innecesarias, sin promesas vacías.
+      </p>
+
+      <div class="hero__indicator" aria-live="polite">
+        <span class="hero__pulse" aria-hidden="true"></span>
+        <span class="hero__indicator-text">Solo 2 plazas este mes</span>
+      </div>
 
       <div class="hero__actions">
         <a href="#apply" class="btn btn-primary">
