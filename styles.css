@@ -169,3 +169,56 @@ section { padding-block: var(--section-y); }
 .filosofia__principles .num { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 1.1rem; color: var(--muted); padding-top: 0.4rem; min-width: 2.4ch; }
 .filosofia__principles h3 { grid-column: 2; font-family: var(--sans); font-weight: 600; font-size: 1.0625rem; letter-spacing: -0.005em; }
 .filosofia__principles p { grid-column: 2; color: var(--muted); font-size: 0.95rem; line-height: 1.55; }
+
+/* ============================================================
+   Capabilities
+   ============================================================ */
+.caps__head { display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-bottom: clamp(3rem, 6vw, 5rem); }
+.caps__title { max-width: 22ch; }
+.caps__title em { font-style: italic; font-weight: 400; }
+
+.caps__list { display: flex; flex-direction: column; }
+.caps__row {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: clamp(1.5rem, 4vw, 3rem);
+  row-gap: 0.4rem;
+  padding-block: clamp(1.5rem, 3vw, 2.25rem);
+  border-top: 1px solid var(--rule);
+  align-items: baseline;
+}
+.caps__row:last-child { border-bottom: 1px solid var(--rule); }
+
+.caps__num {
+  grid-row: 1 / span 2;
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  line-height: 1;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  align-self: start;
+}
+.caps__name {
+  grid-column: 2;
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: clamp(1.125rem, 2vw, 1.5rem);
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+.caps__desc {
+  grid-column: 2;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.55;
+  max-width: 60ch;
+}
+
+@media (min-width: 1024px) {
+  .caps__row { grid-template-columns: auto minmax(20ch, 1fr) minmax(28ch, 1.4fr); align-items: baseline; }
+  .caps__name { grid-column: 2; grid-row: 1; }
+  .caps__desc { grid-column: 3; grid-row: 1; }
+  .caps__num { grid-row: 1; }
+}
