@@ -148,3 +148,24 @@ section { padding-block: var(--section-y); }
 @keyframes heroLine {
   to { transform: translateY(0); }
 }
+
+/* ============================================================
+   Filosofía
+   ============================================================ */
+.filosofia__head { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.5rem; margin-bottom: clamp(3rem, 6vw, 5rem); }
+.filosofia__title { max-width: 18ch; }
+.filosofia__title em { font-style: italic; font-weight: 400; }
+
+.filosofia__grid { display: grid; grid-template-columns: 1fr; gap: clamp(2.5rem, 5vw, 4rem); }
+@media (min-width: 1024px) {
+  .filosofia__grid { grid-template-columns: 1.1fr 1fr; gap: clamp(3rem, 6vw, 6rem); }
+}
+.filosofia__body p { color: var(--ink); font-size: 1.0625rem; line-height: 1.7; max-width: 52ch; }
+.filosofia__body p + p { margin-top: 1.25rem; }
+
+.filosofia__principles { display: flex; flex-direction: column; gap: 0; }
+.filosofia__principles > li { display: grid; grid-template-columns: auto 1fr; column-gap: 1.5rem; row-gap: 0.5rem; padding-block: 1.5rem; border-top: 1px solid var(--rule); }
+.filosofia__principles > li:last-child { border-bottom: 1px solid var(--rule); }
+.filosofia__principles .num { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 1.1rem; color: var(--muted); padding-top: 0.4rem; min-width: 2.4ch; }
+.filosofia__principles h3 { grid-column: 2; font-family: var(--sans); font-weight: 600; font-size: 1.0625rem; letter-spacing: -0.005em; }
+.filosofia__principles p { grid-column: 2; color: var(--muted); font-size: 0.95rem; line-height: 1.55; }
