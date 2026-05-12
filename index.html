@@ -1,425 +1,982 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="dark">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cubo Labs — Independent venture studio for engineered AI systems</title>
-  <meta name="description" content="Cubo Labs designs engineered AI systems for companies that refuse to scale by working harder. Apply for a Foundation session." />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Cubo Labs — Automatización con IA para tu negocio</title>
+<meta name="description" content="Creamos agentes IA, automatizaciones y sistemas inteligentes que responden clientes, gestionan procesos y generan oportunidades 24/7. Vendé más trabajando menos." />
+<meta property="og:title" content="Cubo Labs — Automatización con IA" />
+<meta property="og:description" content="Automatizamos tu negocio con IA para que vendas más trabajando menos." />
+<link rel="icon" type="image/png" href="assets/primary_logo.png" />
 
-  <!-- Open Graph -->
-  <meta property="og:title"       content="Cubo Labs — Independent venture studio" />
-  <meta property="og:description" content="Engineered AI systems for companies that refuse to scale by working harder." />
-  <meta property="og:type"        content="website" />
+<!-- Anti-flash theme bootstrap -->
+<script>
+  (function () {
+    try {
+      var saved = localStorage.getItem('theme');
+      var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var theme = saved || (prefersDark ? 'dark' : 'dark'); // default dark
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {}
+  })();
+</script>
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="assets/branding.png" />
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet" />
+<!-- Tailwind Play CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Inter', 'system-ui', 'sans-serif'],
+          display: ['Space Grotesk', 'Inter', 'sans-serif']
+        }
+      }
+    }
+  };
+</script>
 
-  <!-- Styles -->
-  <link rel="stylesheet" href="styles.css" />
-
-  <!-- GSAP CDN -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
-
-  <!-- Lenis CDN -->
-  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" defer></script>
-
-  <!-- Main JS -->
-  <script src="main.js" defer></script>
+<link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-  <!-- ==================== NAV ==================== -->
-  <header class="nav" id="nav" aria-label="Navegación principal">
-    <div class="nav__inner">
-      <a class="nav__brand" href="#" aria-label="Cubo Labs inicio">
-        <img src="assets/branding.png" alt="" class="nav__logo" />
-        <span class="nav__wordmark">cubo labs.</span>
-      </a>
-      <a class="nav__cta" href="#apply">Apply</a>
+<!-- Background lighting (fixed full-page blobs) -->
+<div class="fixed inset-0 pointer-events-none overflow-hidden z-0" aria-hidden="true">
+  <div class="gradient-blob blob-purple" style="width: 600px; height: 600px; top: -10%; left: -10%;"></div>
+  <div class="gradient-blob blob-blue" style="width: 700px; height: 700px; top: 30%; right: -15%;"></div>
+  <div class="gradient-blob blob-cyan" style="width: 500px; height: 500px; bottom: 5%; left: 30%;"></div>
+</div>
+<div class="noise-overlay" aria-hidden="true"></div>
+
+<!-- Lucide icon symbol library (defined once, used many times) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="flow-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#3b82f6" />
+      <stop offset="50%" stop-color="#8b5cf6" />
+      <stop offset="100%" stop-color="#22d3ee" />
+    </linearGradient>
+
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></symbol>
+    <symbol id="i-check-circle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></symbol>
+    <symbol id="i-x-circle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></symbol>
+    <symbol id="i-bot" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/><line x1="8" y1="16" x2="8" y2="16"/><line x1="16" y1="16" x2="16" y2="16"/></symbol>
+    <symbol id="i-zap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></symbol>
+    <symbol id="i-trending" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></symbol>
+    <symbol id="i-msg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></symbol>
+    <symbol id="i-mic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></symbol>
+    <symbol id="i-link" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+    <symbol id="i-stethoscope" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6 6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3"/><path d="M8 15v1a6 6 0 0 0 6 6 6 6 0 0 0 6-6v-4"/><circle cx="20" cy="10" r="2"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></symbol>
+    <symbol id="i-cart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></symbol>
+    <symbol id="i-utensils" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></symbol>
+    <symbol id="i-briefcase" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></symbol>
+    <symbol id="i-form" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 8h10M7 12h6M7 16h10"/></symbol>
+    <symbol id="i-cal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></symbol>
+    <symbol id="i-target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></symbol>
+    <symbol id="i-rocket" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m4.93 19.07 1.41-1.41"/><path d="m17.66 6.34 1.41-1.41"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="5 3 19 12 5 21 5 3"/></symbol>
+    <symbol id="i-instagram" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></symbol>
+    <symbol id="i-linkedin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></symbol>
+    <symbol id="i-x-twitter" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></symbol>
+    <symbol id="i-sparkles" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3z"/></symbol>
+  </defs>
+</svg>
+
+<!-- ========================================================
+     NAVBAR
+     ======================================================== -->
+<nav class="navbar" id="navbar">
+  <div class="navbar-inner">
+    <a href="#hero" class="flex items-center gap-2">
+      <img src="assets/primary_logo.png" alt="Cubo Labs" class="logo-img" />
+    </a>
+    <div class="hidden md:flex items-center gap-1">
+      <a href="#soluciones" class="nav-link">Soluciones</a>
+      <a href="#demos" class="nav-link">Demos</a>
+      <a href="#sectores" class="nav-link">Sectores</a>
+      <a href="#proceso" class="nav-link">Proceso</a>
+      <a href="#faq" class="nav-link">FAQ</a>
     </div>
-  </header>
+    <div class="flex items-center gap-2">
+      <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
+        <svg class="moon" width="18" height="18"><use href="#i-moon"/></svg>
+        <svg class="sun" width="18" height="18"><use href="#i-sun"/></svg>
+      </button>
+      <a href="#contacto" class="btn-primary hidden md:inline-flex !py-2.5 !px-4 text-sm">
+        🔥 Agendar llamada
+      </a>
+      <button class="md:hidden theme-toggle" id="menuToggle" aria-label="Abrir menú">
+        <svg width="18" height="18"><use href="#i-menu"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
 
-  <!-- ==================== HERO ==================== -->
-  <section id="hero" class="hero" aria-label="Hero">
-    <canvas class="hero__canvas" id="hero-canvas" aria-hidden="true"></canvas>
-    <div class="container hero__inner">
-      <span class="eyebrow hero__eyebrow"><span class="num">—</span> Cubo Labs · Independent venture studio</span>
+<!-- Mobile menu overlay -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="theme-toggle absolute top-6 right-6" id="menuClose" aria-label="Cerrar menú">
+    <svg width="18" height="18"><use href="#i-close"/></svg>
+  </button>
+  <a href="#soluciones">Soluciones</a>
+  <a href="#demos">Demos</a>
+  <a href="#sectores">Sectores</a>
+  <a href="#proceso">Proceso</a>
+  <a href="#faq">FAQ</a>
+  <a href="#contacto" class="btn-primary mt-4">🔥 Agendar llamada</a>
+</div>
 
-      <div class="hero__title-block">
-        <span class="hero__plus hero__plus--tl" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M12 4v16M4 12h16" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg>
-        </span>
-        <span class="hero__plus hero__plus--tr" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M12 4v16M4 12h16" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg>
-        </span>
-        <span class="hero__plus hero__plus--bl" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M12 4v16M4 12h16" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg>
-        </span>
-        <span class="hero__plus hero__plus--br" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M12 4v16M4 12h16" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg>
-        </span>
-        <h1 class="hero__title">
-          <span class="reveal-line"><span>Sistemas de ingeniería</span></span>
-          <span class="reveal-line"><span>para empresas que se niegan</span></span>
-          <span class="reveal-line"><span>a crecer <em>trabajando más.</em></span></span>
+<!-- ========================================================
+     1. HERO
+     ======================================================== -->
+<section id="hero" class="relative pt-36 md:pt-44 pb-24 md:pb-32 overflow-hidden">
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+    <div class="gradient-blob blob-blue" style="width: 500px; height: 500px; top: -10%; left: 10%;"></div>
+    <div class="gradient-blob blob-purple" style="width: 600px; height: 600px; top: 20%; right: -10%;"></div>
+  </div>
+
+  <div class="container-x relative z-10">
+    <div class="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+      <!-- Copy column -->
+      <div class="lg:col-span-7 flex flex-col gap-7">
+        <span class="eyebrow self-start" data-reveal>IA aplicada a resultados reales</span>
+        <h1 class="h1-display" data-reveal>
+          Automatizamos tu negocio con IA para que <span class="gradient-text">vendas más</span> trabajando menos.
         </h1>
-      </div>
-
-      <p class="hero__sub">
-        Diseñamos arquitecturas de
-        <span class="hero__typewriter" data-words="IA aplicada|automatización|software a medida|estrategia digital">IA aplicada</span>
-        — sin herramientas innecesarias, sin promesas vacías.
-      </p>
-
-      <div class="hero__indicator" aria-live="polite">
-        <span class="hero__pulse" aria-hidden="true"></span>
-        <span class="hero__indicator-text">Solo 2 plazas este mes</span>
-      </div>
-
-      <div class="hero__actions">
-        <a href="#apply" class="btn btn-primary">
-          Apply for a Foundation session
-          <span class="arrow" aria-hidden="true">→</span>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== FILOSOFÍA ==================== -->
-  <section id="filosofia" class="filosofia" aria-label="Filosofía">
-    <div class="container filosofia__inner">
-
-      <header class="filosofia__head">
-        <span class="eyebrow"><span class="num">— 01</span> Manifesto</span>
-        <h2 class="filosofia__title js-reveal">Menos herramientas.<br /><em>Más ingeniería.</em></h2>
-      </header>
-
-      <div class="filosofia__grid">
-        <div class="filosofia__body js-fade-up">
-          <p>La mayoría de los problemas de negocio no se resuelven con más software. Se resuelven con sistemas pensados para durar — donde cada decisión técnica responde a una intención clara.</p>
-          <p>No vendemos herramientas, ni implementamos modas. Construimos arquitecturas digitales que se sostienen solas, que escalan sin sumar fricción y que generan resultados medibles.</p>
-          <p>Si tu empresa todavía depende del esfuerzo, todavía no tiene un sistema.</p>
-        </div>
-
-        <ol class="filosofia__principles js-stagger">
-          <li>
-            <span class="num">01</span>
-            <h3>Diseñar antes que implementar</h3>
-            <p>Toda solución empieza con una arquitectura clara — no con un stack favorito.</p>
-          </li>
-          <li>
-            <span class="num">02</span>
-            <h3>Sistemas, no parches</h3>
-            <p>Si no se sostiene sin nosotros, no es un sistema.</p>
-          </li>
-          <li>
-            <span class="num">03</span>
-            <h3>Medir el impacto, no el output</h3>
-            <p>Lo que importa no es cuánto se entrega, sino cuánto cambia el negocio.</p>
-          </li>
-        </ol>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ==================== FOUNDATION ==================== -->
-  <section id="foundation" class="foundation" aria-label="The Foundation Cube">
-    <div class="container foundation__inner">
-
-      <div class="foundation__visual js-scale-soft">
-        <img src="assets/branding.png" alt="Cubo Labs" class="foundation__cube" />
-      </div>
-
-      <div class="foundation__content">
-        <span class="eyebrow"><span class="num">— 03</span> The product</span>
-        <h2 class="foundation__title js-reveal">The Foundation Cube.</h2>
-        <p class="foundation__lead js-fade-up">Una sesión estratégica de 90 minutos donde diagnosticamos tu negocio y diseñamos la arquitectura de IA, automatización y software que necesitás para escalar — antes de implementar nada.</p>
-
-        <ol class="foundation__deliverables js-stagger">
-          <li>
-            <span class="num">01</span>
-            <span>Auditoría completa de procesos internos.</span>
-          </li>
-          <li>
-            <span class="num">02</span>
-            <span>Identificación de las automatizaciones de mayor retorno.</span>
-          </li>
-          <li>
-            <span class="num">03</span>
-            <span>Oportunidades de IA aplicadas a tu sector específico.</span>
-          </li>
-          <li>
-            <span class="num">04</span>
-            <span>Arquitectura tecnológica recomendada y stack justificado.</span>
-          </li>
-          <li>
-            <span class="num">05</span>
-            <span>Roadmap de implementación con prioridades claras.</span>
-          </li>
-        </ol>
-
-        <p class="foundation__note js-fade-up">By application — limited to 3 sessions per month.</p>
-
-        <a href="#apply" class="btn btn-primary foundation__cta js-fade-up">
-          Apply
-          <span class="arrow" aria-hidden="true">→</span>
-        </a>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ==================== CAPABILITIES ==================== -->
-  <section id="capacidades" class="caps" aria-label="Capabilities">
-    <div class="container caps__inner">
-
-      <header class="caps__head">
-        <span class="eyebrow"><span class="num">— 02</span> Capabilities</span>
-        <h2 class="caps__title js-reveal">Diseñamos sistemas,<br /><em>no soluciones aisladas.</em></h2>
-      </header>
-
-      <ol class="caps__list js-stagger">
-        <li class="caps__row">
-          <span class="caps__num">01</span>
-          <h3 class="caps__name">Inteligencia Artificial Aplicada</h3>
-          <p class="caps__desc">Agentes, decisiones automatizadas y modelos integrados en tu operación diaria.</p>
-        </li>
-        <li class="caps__row">
-          <span class="caps__num">02</span>
-          <h3 class="caps__name">Automatización de Procesos</h3>
-          <p class="caps__desc">Eliminamos trabajo manual repetitivo y reducimos errores operativos.</p>
-        </li>
-        <li class="caps__row">
-          <span class="caps__num">03</span>
-          <h3 class="caps__name">Software a Medida</h3>
-          <p class="caps__desc">Plataformas internas y aplicaciones construidas para tu operación específica.</p>
-        </li>
-        <li class="caps__row">
-          <span class="caps__num">04</span>
-          <h3 class="caps__name">CRM y ERP Inteligentes</h3>
-          <p class="caps__desc">Centralizamos datos para decisiones en tiempo real, no para llenar dashboards.</p>
-        </li>
-        <li class="caps__row">
-          <span class="caps__num">05</span>
-          <h3 class="caps__name">Estrategia Digital</h3>
-          <p class="caps__desc">Tecnología alineada con objetivos de negocio, con métricas claras de retorno.</p>
-        </li>
-        <li class="caps__row">
-          <span class="caps__num">06</span>
-          <h3 class="caps__name">Landing Pages de Alto Rendimiento</h3>
-          <p class="caps__desc">Diseñadas para convertir visitantes en clientes, no solo para verse bien.</p>
-        </li>
-        <li class="caps__row">
-          <span class="caps__num">07</span>
-          <h3 class="caps__name">Consultoría Empresarial</h3>
-          <p class="caps__desc">Diagnóstico y arquitectura — antes de tocar una sola línea de código.</p>
-        </li>
-        <li class="caps__row">
-          <span class="caps__num">08</span>
-          <h3 class="caps__name">Mantenimiento y Evolución</h3>
-          <p class="caps__desc">Tu sistema no se queda estático: evoluciona junto con tu negocio.</p>
-        </li>
-      </ol>
-
-    </div>
-  </section>
-
-  <!-- ==================== PROCESO ==================== -->
-  <section id="proceso" aria-label="Cómo trabajamos">
-    <div class="container">
-
-      <div class="proceso__intro">
-        <span class="section-label" data-animate="fade-up">Cómo trabajamos</span>
-        <h2 class="section-title" data-animate="fade-up" data-delay="0.1">
-          Un proceso claro.<br /><em>Sin improvisación.</em>
-        </h2>
-        <p class="section-subtitle" data-animate="fade-up" data-delay="0.2">
-          Cada proyecto sigue una metodología probada que garantiza resultados medibles
-          desde el primer día de implementación.
+        <p class="text-lg md:text-xl max-w-2xl leading-relaxed" style="color: var(--text-secondary)" data-reveal>
+          Creamos agentes IA, automatizaciones y sistemas inteligentes que responden clientes, gestionan procesos y generan oportunidades 24/7 sin aumentar tu carga operativa.
         </p>
+        <div class="flex flex-col sm:flex-row gap-3 mt-2" data-reveal>
+          <a href="#contacto" class="btn-primary">
+            <svg width="18" height="18"><use href="#i-rocket"/></svg>
+            Agendar consultoría gratuita
+          </a>
+          <a href="#demos" class="btn-ghost">
+            <svg width="14" height="14"><use href="#i-play"/></svg>
+            Ver demos en vivo
+          </a>
+        </div>
+        <div class="flex flex-wrap gap-x-6 gap-y-2 mt-2 text-sm" style="color: var(--text-secondary)" data-reveal>
+          <span class="flex items-center gap-2">
+            <svg width="16" height="16" style="color: var(--accent-cyan)"><use href="#i-check-circle"/></svg>
+            Implementación rápida
+          </span>
+          <span class="flex items-center gap-2">
+            <svg width="16" height="16" style="color: var(--accent-cyan)"><use href="#i-check-circle"/></svg>
+            Integración con WhatsApp y CRM
+          </span>
+          <span class="flex items-center gap-2">
+            <svg width="16" height="16" style="color: var(--accent-cyan)"><use href="#i-check-circle"/></svg>
+            Sistemas personalizados
+          </span>
+        </div>
       </div>
 
-      <div class="proceso__steps" data-animate-children="rotate-in" data-stagger="0.12">
-        <div class="proceso__step">
-          <div class="proceso__num" aria-hidden="true">01</div>
-          <h3>Consultoría<br />Estratégica</h3>
-          <p>Entendemos tu negocio en profundidad: procesos, dolores y oportunidades. Aquí empieza todo.</p>
-        </div>
-        <div class="proceso__step">
-          <div class="proceso__num" aria-hidden="true">02</div>
-          <h3>Diseño de<br />Arquitectura</h3>
-          <p>Creamos el sistema ideal para tus objetivos. Tecnología seleccionada, no impuesta.</p>
-        </div>
-        <div class="proceso__step">
-          <div class="proceso__num" aria-hidden="true">03</div>
-          <h3>Implementación<br />Precisa</h3>
-          <p>Desarrollamos, integramos y probamos cada componente antes de salir en producción.</p>
-        </div>
-        <div class="proceso__step">
-          <div class="proceso__num" aria-hidden="true">04</div>
-          <h3>Optimización<br />Continua</h3>
-          <p>Medimos resultados, ajustamos y escalamos. El sistema mejora con el tiempo.</p>
+      <!-- Visual column -->
+      <div class="lg:col-span-5 relative" data-reveal>
+        <div class="relative" id="heroVisual">
+          <!-- Main floating chat -->
+          <div class="float-chat relative z-10 max-w-md mx-auto" id="heroChat">
+            <div class="flex items-center gap-3 pb-3 border-b" style="border-color: var(--border-subtle)">
+              <div class="w-9 h-9 rounded-full grid place-items-center" style="background: var(--gradient-hero)">
+                <svg width="16" height="16" style="color: #fff"><use href="#i-bot"/></svg>
+              </div>
+              <div class="flex-1">
+                <div class="font-semibold text-sm">Asistente IA · Cubo</div>
+                <div class="text-xs flex items-center gap-1.5" style="color: var(--text-muted)">
+                  <span class="w-1.5 h-1.5 rounded-full" style="background: #10b981; box-shadow: 0 0 8px #10b981"></span>
+                  En línea · Responde al instante
+                </div>
+              </div>
+            </div>
+            <div class="flex flex-col gap-2.5 pt-4 min-h-[210px]" id="chatStream">
+              <!-- JS injects bubbles here -->
+            </div>
+          </div>
+
+          <!-- Floating stat card 1 -->
+          <div class="float-card lift" style="top: -20px; right: -10px;">
+            <div class="w-9 h-9 rounded-xl grid place-items-center" style="background: var(--gradient-cool)">
+              <svg width="16" height="16" style="color: #fff"><use href="#i-trending"/></svg>
+            </div>
+            <div>
+              <div class="text-xs" style="color: var(--text-muted)">Leads atendidos hoy</div>
+              <div class="font-display font-bold text-lg">+342</div>
+            </div>
+          </div>
+
+          <!-- Floating stat card 2 -->
+          <div class="float-card lift-2 hidden md:flex" style="bottom: -20px; left: -20px;">
+            <div class="w-9 h-9 rounded-xl grid place-items-center" style="background: var(--gradient-warm)">
+              <svg width="16" height="16" style="color: #fff"><use href="#i-clock"/></svg>
+            </div>
+            <div>
+              <div class="text-xs" style="color: var(--text-muted)">Respuesta promedio</div>
+              <div class="font-display font-bold text-lg">2.3s</div>
+            </div>
+          </div>
         </div>
       </div>
-
-      <div class="proceso__connector" aria-hidden="true"></div>
-
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ==================== ENGINEER (DARK INVERSE) ==================== -->
-  <section id="fundador" class="engineer is-inverse" aria-label="The Engineer">
-    <div class="container engineer__inner">
-
-      <div class="engineer__photo js-scale-soft">
-        <img src="perfil.PNG" alt="Ezequiel Frías — Founder & Engineer" />
-      </div>
-
-      <div class="engineer__content">
-        <span class="eyebrow"><span class="num">— 04</span> The Engineer</span>
-        <h2 class="engineer__quote js-reveal">"Less tooling.<br /><em>More engineering."</em></h2>
-
-        <div class="engineer__bio js-stagger">
-          <p>Diseño arquitecturas tecnológicas que resuelven problemas reales de negocio. No creo en soluciones genéricas ni en implementaciones que parecen modernas pero no generan resultados.</p>
-          <p>Cada sistema que construyo está pensado para escalar, adaptarse y generar impacto medible desde el primer mes. No hay magia — hay ingeniería bien aplicada.</p>
-          <p>Trabajo directamente con cada cliente para asegurar que la tecnología no solo funcione, sino que transforme su forma de operar.</p>
-        </div>
-
-        <div class="engineer__sig js-fade-up">
-          <p class="engineer__name">Ezequiel Frías</p>
-          <p class="engineer__title">Founder & Engineer · Telecom Engineer · AI Specialist</p>
-        </div>
-      </div>
-
+<!-- ========================================================
+     2. SOCIAL PROOF / METRICS
+     ======================================================== -->
+<section id="metricas" class="section-pad relative">
+  <div class="container-x relative z-10">
+    <div class="text-center max-w-3xl mx-auto mb-14 flex flex-col gap-4">
+      <span class="eyebrow mx-auto" data-reveal>Resultados medibles</span>
+      <h2 class="h2-display" data-reveal>
+        Empresas que ya están <span class="gradient-text">optimizando su crecimiento</span> con IA.
+      </h2>
     </div>
-  </section>
 
-  <!-- ==================== FAQ ==================== -->
-  <section id="faq" class="faq" aria-label="Preguntas frecuentes">
-    <div class="container faq__inner">
-
-      <header class="faq__head">
-        <span class="eyebrow"><span class="num">— 05</span> Frequently Asked</span>
-        <h2 class="faq__title js-reveal">Preguntas frecuentes.</h2>
-      </header>
-
-      <div class="faq__list js-stagger">
-        <details class="faq__item">
-          <summary>
-            <span class="faq__q">¿La sesión Foundation es realmente gratis?</span>
-            <span class="faq__plus" aria-hidden="true">+</span>
-          </summary>
-          <div class="faq__a">Sí. La sesión inicial vale USD 500 y la ofrecemos sin costo a nuevos clientes. Después de 90 minutos juntos queda claro si tiene sentido seguir trabajando — sin venta de por medio.</div>
-        </details>
-
-        <details class="faq__item">
-          <summary>
-            <span class="faq__q">¿Cuánto tarda una implementación completa?</span>
-            <span class="faq__plus" aria-hidden="true">+</span>
-          </summary>
-          <div class="faq__a">Depende del alcance. La mayoría de los sistemas iniciales se implementan entre 2 y 6 semanas. En la sesión Foundation definimos tiempos realistas para tu caso específico.</div>
-        </details>
-
-        <details class="faq__item">
-          <summary>
-            <span class="faq__q">¿Trabajan con empresas pequeñas o solo con grandes?</span>
-            <span class="faq__plus" aria-hidden="true">+</span>
-          </summary>
-          <div class="faq__a">Trabajamos con empresas que quieran crecer con sistemas, sin importar tamaño. Las PYMES suelen ver el mayor impacto porque liberan recursos atrapados en procesos manuales.</div>
-        </details>
-
-        <details class="faq__item">
-          <summary>
-            <span class="faq__q">¿Qué pasa con las herramientas que ya estoy usando?</span>
-            <span class="faq__plus" aria-hidden="true">+</span>
-          </summary>
-          <div class="faq__a">Las integramos, optimizamos o reemplazamos según corresponda. Nunca partimos de cero sin evaluar lo que ya existe.</div>
-        </details>
-
-        <details class="faq__item">
-          <summary>
-            <span class="faq__q">¿Necesito conocimientos técnicos para empezar?</span>
-            <span class="faq__plus" aria-hidden="true">+</span>
-          </summary>
-          <div class="faq__a">Cero. Vos describís los objetivos del negocio; nosotros traducimos eso en sistemas que funcionan. La tecnología es nuestra responsabilidad.</div>
-        </details>
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="glass-card stat-card" data-reveal>
+        <div class="stat-number"><span data-counter="80" data-prefix="+" data-suffix="%">+80%</span></div>
+        <div class="mt-2 font-medium">Velocidad de respuesta</div>
+        <div class="text-sm mt-1" style="color: var(--text-secondary)">vs. equipos manuales</div>
       </div>
-
-    </div>
-  </section>
-
-  <!-- ==================== APPLY ==================== -->
-  <section id="apply" class="apply" aria-label="Apply">
-    <div class="container apply__inner">
-
-      <header class="apply__head">
-        <span class="eyebrow"><span class="num">— 06</span> Apply</span>
-        <h2 class="apply__title js-reveal">Apply for a<br /><em>Foundation session.</em></h2>
-        <p class="apply__sub js-fade-up">Completá los campos y te contactamos en menos de 24 horas hábiles.</p>
-      </header>
-
-      <form
-        id="contactForm"
-        class="apply__form js-stagger"
-        action="https://formspree.io/f/ENDPOINT"
-        method="POST"
-        novalidate
-      >
-        <div class="field">
-          <label class="field__label" for="nombre">Nombre</label>
-          <input class="field__input" type="text" id="nombre" name="nombre" required />
-        </div>
-
-        <div class="field">
-          <label class="field__label" for="email">Email</label>
-          <input class="field__input" type="email" id="email" name="email" required />
-        </div>
-
-        <div class="field">
-          <label class="field__label" for="empresa">Empresa <span class="field__hint">(opcional)</span></label>
-          <input class="field__input" type="text" id="empresa" name="empresa" />
-        </div>
-
-        <div class="field">
-          <label class="field__label" for="mensaje">¿Cuál es el principal desafío que querés resolver?</label>
-          <textarea class="field__input field__textarea" id="mensaje" name="mensaje" rows="4" required></textarea>
-        </div>
-
-        <div class="apply__submit">
-          <button type="submit" class="btn btn-primary">
-            Submit application
-            <span class="arrow" aria-hidden="true">→</span>
-          </button>
-          <p class="apply__legal">Tu información está segura. Nunca enviamos spam.</p>
-        </div>
-      </form>
-
-      <div class="apply__success" id="formSuccess" hidden>
-        <h3>Recibido.</h3>
-        <p>En las próximas 24 horas hábiles te contactamos para coordinar la sesión.</p>
+      <div class="glass-card stat-card" data-reveal>
+        <div class="stat-number"><span data-counter="40" data-prefix="-" data-suffix="h">-40h</span></div>
+        <div class="mt-2 font-medium">Operativas al mes</div>
+        <div class="text-sm mt-1" style="color: var(--text-secondary)">liberadas en promedio</div>
       </div>
-
+      <div class="glass-card stat-card" data-reveal>
+        <div class="stat-number">24/7</div>
+        <div class="mt-2 font-medium">Atención automatizada</div>
+        <div class="text-sm mt-1" style="color: var(--text-secondary)">sin pausas, sin turnos</div>
+      </div>
+      <div class="glass-card stat-card" data-reveal>
+        <div class="stat-number"><span data-counter="3" data-prefix="" data-suffix="X">3X</span></div>
+        <div class="mt-2 font-medium">Más leads atendidos</div>
+        <div class="text-sm mt-1" style="color: var(--text-secondary)">sin ampliar equipo</div>
+      </div>
     </div>
-  </section>
 
-  <!-- ==================== FOOTER ==================== -->
-  <footer class="footer" role="contentinfo">
-    <div class="container footer__inner">
-      <a class="footer__brand" href="#" aria-label="Cubo Labs inicio">
-        <img src="assets/branding.png" alt="" class="footer__logo" />
-        <span>cubo labs.</span>
+    <p class="text-center max-w-2xl mx-auto mt-12 text-base md:text-lg" style="color: var(--text-secondary)" data-reveal>
+      Mientras otros negocios siguen operando manualmente, nuestros clientes automatizan procesos clave para crecer más rápido y con menos fricción.
+    </p>
+
+    <!-- Logos marquee -->
+    <div class="mt-16 marquee" data-reveal>
+      <div class="marquee-track">
+        <span class="logo-pill"><svg width="16" height="16" style="color:#25D366"><use href="#i-msg"/></svg> WhatsApp Business</span>
+        <span class="logo-pill"><svg width="16" height="16" style="color:#10b981"><use href="#i-sparkles"/></svg> OpenAI</span>
+        <span class="logo-pill"><svg width="16" height="16" style="color:#FF7A59"><use href="#i-users"/></svg> HubSpot</span>
+        <span class="logo-pill"><svg width="16" height="16" style="color:#6E48E8"><use href="#i-zap"/></svg> Make</span>
+        <span class="logo-pill"><svg width="16" height="16" style="color:#EA4B71"><use href="#i-link"/></svg> n8n</span>
+        <span class="logo-pill"><svg width="16" height="16" style="color:#0099ff"><use href="#i-cal"/></svg> Calendly</span>
+        <span class="logo-pill"><svg width="16" height="16" style="color:#3b82f6"><use href="#i-form"/></svg> Typeform</span>
+        <span class="logo-pill"><svg width="16" height="16" style="color:#22d3ee"><use href="#i-bot"/></svg> Anthropic</span>
+        <!-- duplicated for seamless loop -->
+        <span class="logo-pill"><svg width="16" height="16" style="color:#25D366"><use href="#i-msg"/></svg> WhatsApp Business</span>
+        <span class="logo-pill"><svg width="16" height="16" style="color:#10b981"><use href="#i-sparkles"/></svg> OpenAI</span>
+        <span class="logo-pill"><svg width="16" height="16" style="color:#FF7A59"><use href="#i-users"/></svg> HubSpot</span>
+        <span class="logo-pill"><svg width="16" height="16" style="color:#6E48E8"><use href="#i-zap"/></svg> Make</span>
+        <span class="logo-pill"><svg width="16" height="16" style="color:#EA4B71"><use href="#i-link"/></svg> n8n</span>
+        <span class="logo-pill"><svg width="16" height="16" style="color:#0099ff"><use href="#i-cal"/></svg> Calendly</span>
+        <span class="logo-pill"><svg width="16" height="16" style="color:#3b82f6"><use href="#i-form"/></svg> Typeform</span>
+        <span class="logo-pill"><svg width="16" height="16" style="color:#22d3ee"><use href="#i-bot"/></svg> Anthropic</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================
+     3. PROBLEM
+     ======================================================== -->
+<section id="problema" class="section-pad relative">
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+    <div class="gradient-blob blob-red" style="width: 600px; height: 600px; top: 20%; left: -15%;"></div>
+  </div>
+  <div class="container-x relative z-10">
+    <div class="text-center max-w-3xl mx-auto mb-14 flex flex-col gap-4">
+      <span class="eyebrow mx-auto" data-reveal>El problema</span>
+      <h2 class="h2-display" data-reveal>
+        Tu negocio está <span style="background: linear-gradient(135deg,#ef4444,#ec4899); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">perdiendo tiempo, dinero y oportunidades</span> todos los días.
+      </h2>
+      <p class="text-lg" style="color: var(--text-secondary)" data-reveal>
+        La mayoría de empresas siguen dependiendo de procesos manuales que ralentizan ventas, saturan equipos y hacen perder clientes.
+      </p>
+    </div>
+
+    <div class="bento mt-10">
+      <div class="glass-card bento-card" style="grid-column: span 3" data-reveal>
+        <div class="icon-pill" style="background: rgba(239,68,68,0.12); color:#ef4444; border-color: rgba(239,68,68,0.25)">
+          <svg width="22" height="22"><use href="#i-x-circle"/></svg>
+        </div>
+        <h3 class="font-display text-xl mt-4">Leads que nunca reciben seguimiento</h3>
+        <p class="mt-2 text-sm" style="color: var(--text-secondary)">Cada consulta sin respuesta es dinero perdido. La velocidad también vende.</p>
+      </div>
+      <div class="glass-card bento-card" style="grid-column: span 3" data-reveal>
+        <div class="icon-pill" style="background: rgba(236,72,153,0.12); color:#ec4899; border-color: rgba(236,72,153,0.25)">
+          <svg width="22" height="22"><use href="#i-clock"/></svg>
+        </div>
+        <h3 class="font-display text-xl mt-4">Horas perdidas respondiendo lo mismo</h3>
+        <p class="mt-2 text-sm" style="color: var(--text-secondary)">Tu equipo repite respuestas en lugar de cerrar negocios y atender clientes premium.</p>
+      </div>
+      <div class="glass-card bento-card" style="grid-column: span 2" data-reveal>
+        <div class="icon-pill" style="background: rgba(245,158,11,0.12); color:#f59e0b; border-color: rgba(245,158,11,0.25)">
+          <svg width="22" height="22"><use href="#i-users"/></svg>
+        </div>
+        <h3 class="font-display text-lg mt-4">Clientes esperando demasiado</h3>
+        <p class="mt-2 text-sm" style="color: var(--text-secondary)">Cuando hay demora, se van con la competencia.</p>
+      </div>
+      <div class="glass-card bento-card" style="grid-column: span 2" data-reveal>
+        <div class="icon-pill" style="background: rgba(139,92,246,0.12); color:#8b5cf6; border-color: rgba(139,92,246,0.25)">
+          <svg width="22" height="22"><use href="#i-trending"/></svg>
+        </div>
+        <h3 class="font-display text-lg mt-4">Equipos saturados</h3>
+        <p class="mt-2 text-sm" style="color: var(--text-secondary)">Tareas repetitivas consumen energía estratégica.</p>
+      </div>
+      <div class="glass-card bento-card" style="grid-column: span 2" data-reveal>
+        <div class="icon-pill" style="background: rgba(34,211,238,0.12); color:#22d3ee; border-color: rgba(34,211,238,0.25)">
+          <svg width="22" height="22"><use href="#i-link"/></svg>
+        </div>
+        <h3 class="font-display text-lg mt-4">Procesos desconectados</h3>
+        <p class="mt-2 text-sm" style="color: var(--text-secondary)">Cada herramienta funciona aislada. Nada conversa entre sí.</p>
+      </div>
+    </div>
+
+    <div class="text-center mt-14 max-w-2xl mx-auto" data-reveal>
+      <p class="font-display text-2xl md:text-3xl leading-tight">
+        Tu negocio no necesita más trabajo manual.<br>
+        <span class="gradient-text">Necesita sistemas inteligentes que trabajen por ti.</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================
+     4. SERVICES / SOLUTIONS
+     ======================================================== -->
+<section id="soluciones" class="section-pad relative">
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+    <div class="gradient-blob blob-blue" style="width: 700px; height: 700px; top: 10%; right: -20%;"></div>
+  </div>
+  <div class="container-x relative z-10">
+    <div class="text-center max-w-3xl mx-auto mb-14 flex flex-col gap-4">
+      <span class="eyebrow mx-auto" data-reveal>Soluciones</span>
+      <h2 class="h2-display" data-reveal>
+        Creamos <span class="gradient-text">sistemas IA que trabajan 24/7</span> dentro de tu negocio.
+      </h2>
+      <p class="text-lg" style="color: var(--text-secondary)" data-reveal>
+        Diseñamos automatizaciones y agentes IA adaptados a tus procesos para que puedas escalar sin aumentar complejidad operativa.
+      </p>
+    </div>
+
+    <!-- Primary services (3 large cards) -->
+    <div class="grid md:grid-cols-3 gap-5">
+      <div class="glass-card glass-card-glow service-card" data-reveal>
+        <div class="icon-pill"><svg width="24" height="24"><use href="#i-bot"/></svg></div>
+        <h3 class="font-display text-2xl">Agentes IA</h3>
+        <p style="color: var(--text-secondary)">Bots inteligentes entrenados con la información de tu negocio para responder clientes, calificar leads y automatizar conversaciones.</p>
+        <ul class="feature-list">
+          <li>WhatsApp</li>
+          <li>Web</li>
+          <li>Instagram</li>
+          <li>Messenger</li>
+        </ul>
+      </div>
+      <div class="glass-card glass-card-glow service-card" data-reveal>
+        <div class="icon-pill"><svg width="24" height="24"><use href="#i-zap"/></svg></div>
+        <h3 class="font-display text-2xl">Automatizaciones</h3>
+        <p style="color: var(--text-secondary)">Conectamos herramientas, procesos y plataformas para eliminar tareas manuales y ahorrar tiempo operativo.</p>
+        <ul class="feature-list">
+          <li>CRM</li>
+          <li>Formularios</li>
+          <li>Email & Agenda</li>
+          <li>Seguimiento automático</li>
+        </ul>
+      </div>
+      <div class="glass-card glass-card-glow service-card" data-reveal>
+        <div class="icon-pill"><svg width="24" height="24"><use href="#i-trending"/></svg></div>
+        <h3 class="font-display text-2xl">Sistemas de ventas</h3>
+        <p style="color: var(--text-secondary)">Creamos flujos automatizados que convierten tráfico y consultas en reuniones y ventas reales.</p>
+        <ul class="feature-list">
+          <li>Funnels</li>
+          <li>Seguimiento IA</li>
+          <li>Captación</li>
+          <li>Conversión</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Secondary services (3 small cards) -->
+    <div class="grid md:grid-cols-3 gap-5 mt-5">
+      <div class="glass-card glass-card-glow p-6 flex items-center gap-4" data-reveal>
+        <div class="icon-pill flex-shrink-0"><svg width="22" height="22"><use href="#i-msg"/></svg></div>
+        <div>
+          <h4 class="font-display text-lg">WhatsApp IA</h4>
+          <p class="text-sm" style="color: var(--text-secondary)">Atención y ventas automáticas en tu canal #1.</p>
+        </div>
+      </div>
+      <div class="glass-card glass-card-glow p-6 flex items-center gap-4" data-reveal>
+        <div class="icon-pill flex-shrink-0"><svg width="22" height="22"><use href="#i-link"/></svg></div>
+        <div>
+          <h4 class="font-display text-lg">CRM Integrations</h4>
+          <p class="text-sm" style="color: var(--text-secondary)">HubSpot, Pipedrive, Salesforce y más.</p>
+        </div>
+      </div>
+      <div class="glass-card glass-card-glow p-6 flex items-center gap-4" data-reveal>
+        <div class="icon-pill flex-shrink-0"><svg width="22" height="22"><use href="#i-mic"/></svg></div>
+        <div>
+          <h4 class="font-display text-lg">AI Voice Agents</h4>
+          <p class="text-sm" style="color: var(--text-secondary)">Llamadas automatizadas con voz natural.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-14" data-reveal>
+      <a href="#contacto" class="btn-primary">
+        🔥 Quiero automatizar mi negocio
       </a>
-      <p class="footer__meta">© 2026 Cubo Labs. All rights reserved.</p>
-      <a class="footer__top link" href="#">Back to top ↑</a>
     </div>
-  </footer>
+  </div>
+</section>
 
+<!-- ========================================================
+     5. INTERACTIVE DEMOS
+     ======================================================== -->
+<section id="demos" class="section-pad relative">
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+    <div class="gradient-blob blob-purple" style="width: 800px; height: 800px; top: 5%; left: -25%;"></div>
+    <div class="gradient-blob blob-cyan" style="width: 700px; height: 700px; bottom: 0; right: -20%;"></div>
+  </div>
+  <div class="container-x relative z-10">
+    <div class="text-center max-w-3xl mx-auto mb-14 flex flex-col gap-4">
+      <span class="eyebrow mx-auto" data-reveal>Demos en vivo</span>
+      <h2 class="h2-display" data-reveal>
+        Prueba cómo funciona nuestra <span class="gradient-text">IA en tiempo real</span>.
+      </h2>
+      <p class="text-lg" style="color: var(--text-secondary)" data-reveal>
+        Interactúa con algunos de nuestros sistemas y descubre cómo se vería la automatización dentro de tu negocio.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-5">
+      <!-- Demo 1: AI Chat -->
+      <div class="glass-card glass-card-glow demo-card tilt-card" data-reveal>
+        <div class="demo-card-header">
+          <div class="flex items-center gap-3">
+            <div class="dot-row"><span></span><span></span><span></span></div>
+            <span class="demo-tag">DEMO 01</span>
+          </div>
+          <span class="text-xs" style="color: var(--text-muted)">Asistente IA · Ventas</span>
+        </div>
+        <div class="flex-1 flex flex-col gap-2.5 px-1" id="demoChatStream"></div>
+        <div class="mt-4 pt-3 border-t flex items-center justify-between" style="border-color: var(--border-subtle)">
+          <span class="text-xs" style="color: var(--text-muted)">Hacé preguntas, observá las respuestas</span>
+          <span class="text-xs flex items-center gap-1" style="color: var(--accent-cyan)">
+            <span class="w-1.5 h-1.5 rounded-full" style="background: var(--accent-cyan); box-shadow: 0 0 8px var(--accent-cyan)"></span>
+            En vivo
+          </span>
+        </div>
+      </div>
+
+      <!-- Demo 2: WhatsApp -->
+      <div class="glass-card glass-card-glow demo-card tilt-card" data-reveal>
+        <div class="demo-card-header">
+          <div class="flex items-center gap-3">
+            <div class="dot-row"><span></span><span></span><span></span></div>
+            <span class="demo-tag" style="color:#25D366; background:rgba(37,211,102,0.12); border-color:rgba(37,211,102,0.25)">DEMO 02</span>
+          </div>
+          <span class="text-xs" style="color: var(--text-muted)">WhatsApp · Reservas</span>
+        </div>
+        <div class="wa-frame">
+          <div class="wa-header">
+            <div class="avatar">CL</div>
+            <div>
+              <div class="font-semibold text-sm">Cubo Labs</div>
+              <div class="text-xs opacity-80">en línea · escribiendo…</div>
+            </div>
+          </div>
+          <div class="wa-msgs" id="waMsgs"></div>
+        </div>
+      </div>
+
+      <!-- Demo 3: Voice -->
+      <div class="glass-card glass-card-glow demo-card tilt-card" data-reveal>
+        <div class="demo-card-header">
+          <div class="flex items-center gap-3">
+            <div class="dot-row"><span></span><span></span><span></span></div>
+            <span class="demo-tag" style="color:#ec4899; background:rgba(236,72,153,0.12); border-color:rgba(236,72,153,0.25)">DEMO 03</span>
+          </div>
+          <span class="text-xs" style="color: var(--text-muted)">Voice Agent · Llamada</span>
+        </div>
+        <div class="flex-1 flex flex-col items-center justify-center gap-6">
+          <div class="w-20 h-20 rounded-full grid place-items-center relative" style="background: var(--gradient-warm)">
+            <svg width="32" height="32" style="color:#fff"><use href="#i-mic"/></svg>
+            <span class="absolute inset-0 rounded-full" style="background: var(--gradient-warm); filter: blur(20px); opacity: 0.5; animation: pulse-glow 2.5s ease-in-out infinite; z-index:-1"></span>
+          </div>
+          <div class="waveform">
+            <span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span>
+            <span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span>
+            <span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span>
+            <span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span>
+            <span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span>
+          </div>
+          <div class="text-center">
+            <div class="font-display text-lg">Asistente IA · 00:42</div>
+            <div class="text-sm" style="color: var(--text-secondary)">Filtrando consulta · agendando reunión</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Demo 4: Workflow -->
+      <div class="glass-card glass-card-glow demo-card tilt-card" data-reveal>
+        <div class="demo-card-header">
+          <div class="flex items-center gap-3">
+            <div class="dot-row"><span></span><span></span><span></span></div>
+            <span class="demo-tag" style="color:#8b5cf6; background:rgba(139,92,246,0.12); border-color:rgba(139,92,246,0.25)">DEMO 04</span>
+          </div>
+          <span class="text-xs" style="color: var(--text-muted)">Automatización · Flujo</span>
+        </div>
+        <div class="flex-1 flex flex-col items-center justify-center gap-6">
+          <div class="workflow w-full">
+            <svg class="workflow-line" preserveAspectRatio="none" viewBox="0 0 100 2">
+              <line class="path-bg" x1="0" y1="1" x2="100" y2="1" />
+              <line class="path-fg" x1="0" y1="1" x2="100" y2="1" />
+            </svg>
+            <div class="workflow-node"><svg><use href="#i-form"/></svg><span>Form</span></div>
+            <div class="workflow-node"><svg><use href="#i-bot"/></svg><span>IA</span></div>
+            <div class="workflow-node"><svg><use href="#i-msg"/></svg><span>WhatsApp</span></div>
+            <div class="workflow-node"><svg><use href="#i-cal"/></svg><span>Calendar</span></div>
+          </div>
+          <div class="text-center max-w-xs">
+            <div class="font-display text-base">Form → IA → WhatsApp → Calendar</div>
+            <div class="text-sm mt-1" style="color: var(--text-secondary)">4 herramientas conectadas en un solo flujo automatizado</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================
+     6. INDUSTRIES
+     ======================================================== -->
+<section id="sectores" class="section-pad relative">
+  <div class="container-x relative z-10">
+    <div class="text-center max-w-3xl mx-auto mb-14 flex flex-col gap-4">
+      <span class="eyebrow mx-auto" data-reveal>Sectores</span>
+      <h2 class="h2-display" data-reveal>
+        Soluciones IA <span class="gradient-text">adaptadas a tu industria</span>.
+      </h2>
+    </div>
+
+    <div class="industries-grid">
+      <div class="glass-card glass-card-glow industry-card" data-reveal>
+        <div class="industry-icon" style="color:#22d3ee"><svg width="24" height="24"><use href="#i-stethoscope"/></svg></div>
+        <h3 class="font-display text-2xl">Clínicas y salud</h3>
+        <p style="color: var(--text-secondary)">Automatizamos confirmaciones, seguimiento y atención para mejorar la experiencia del paciente y reducir carga administrativa.</p>
+        <ul class="feature-list mt-2">
+          <li>Confirmación de turnos</li>
+          <li>Recordatorios automáticos</li>
+          <li>Atención 24/7</li>
+        </ul>
+      </div>
+      <div class="glass-card glass-card-glow industry-card" data-reveal>
+        <div class="industry-icon" style="color:#3b82f6"><svg width="24" height="24"><use href="#i-home"/></svg></div>
+        <h3 class="font-display text-xl">Inmobiliarias</h3>
+        <p style="color: var(--text-secondary)">Captura, seguimiento y calificación automática de leads para cerrar más oportunidades.</p>
+      </div>
+      <div class="glass-card glass-card-glow industry-card" data-reveal>
+        <div class="industry-icon" style="color:#8b5cf6"><svg width="24" height="24"><use href="#i-cart"/></svg></div>
+        <h3 class="font-display text-xl">Ecommerce</h3>
+        <p style="color: var(--text-secondary)">Atención automática, recuperación de carritos y soporte IA.</p>
+      </div>
+      <div class="glass-card glass-card-glow industry-card" data-reveal>
+        <div class="industry-icon" style="color:#ec4899"><svg width="24" height="24"><use href="#i-utensils"/></svg></div>
+        <h3 class="font-display text-xl">Restaurantes</h3>
+        <p style="color: var(--text-secondary)">Reservas automáticas, atención por WhatsApp y gestión inteligente.</p>
+      </div>
+      <div class="glass-card glass-card-glow industry-card" data-reveal>
+        <div class="industry-icon" style="color:#10b981"><svg width="24" height="24"><use href="#i-briefcase"/></svg></div>
+        <h3 class="font-display text-xl">Negocios de servicios</h3>
+        <p style="color: var(--text-secondary)">Cotizaciones automáticas, seguimiento instantáneo y automatización de procesos comerciales.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================
+     7. PROCESS
+     ======================================================== -->
+<section id="proceso" class="section-pad relative">
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+    <div class="gradient-blob blob-pink" style="width: 600px; height: 600px; top: 30%; right: -10%;"></div>
+  </div>
+  <div class="container-x relative z-10">
+    <div class="text-center max-w-3xl mx-auto mb-14 flex flex-col gap-4">
+      <span class="eyebrow mx-auto" data-reveal>Cómo trabajamos</span>
+      <h2 class="h2-display" data-reveal>
+        Implementar IA en tu negocio es <span class="gradient-text">más fácil de lo que crees</span>.
+      </h2>
+    </div>
+
+    <div class="process-grid">
+      <div class="glass-card process-card" data-reveal>
+        <div class="step-num">01</div>
+        <h3 class="font-display text-xl mt-4 flex items-center gap-2">
+          <svg width="20" height="20" style="color: var(--accent-blue)"><use href="#i-search"/></svg>
+          Diagnóstico
+        </h3>
+        <p class="mt-2 text-sm" style="color: var(--text-secondary)">Analizamos tus procesos actuales e identificamos dónde estás perdiendo tiempo y oportunidades.</p>
+      </div>
+      <div class="glass-card process-card" data-reveal>
+        <div class="step-num">02</div>
+        <h3 class="font-display text-xl mt-4 flex items-center gap-2">
+          <svg width="20" height="20" style="color: var(--accent-purple)"><use href="#i-target"/></svg>
+          Estrategia
+        </h3>
+        <p class="mt-2 text-sm" style="color: var(--text-secondary)">Diseñamos una solución IA personalizada según tus objetivos y flujo operativo.</p>
+      </div>
+      <div class="glass-card process-card" data-reveal>
+        <div class="step-num">03</div>
+        <h3 class="font-display text-xl mt-4 flex items-center gap-2">
+          <svg width="20" height="20" style="color: var(--accent-cyan)"><use href="#i-rocket"/></svg>
+          Implementación
+        </h3>
+        <p class="mt-2 text-sm" style="color: var(--text-secondary)">Integramos automatizaciones, agentes IA y sistemas inteligentes dentro de tu negocio.</p>
+      </div>
+      <div class="glass-card process-card" data-reveal>
+        <div class="step-num">04</div>
+        <h3 class="font-display text-xl mt-4 flex items-center gap-2">
+          <svg width="20" height="20" style="color:#ec4899"><use href="#i-chart"/></svg>
+          Optimización
+        </h3>
+        <p class="mt-2 text-sm" style="color: var(--text-secondary)">Medimos resultados y optimizamos continuamente para aumentar rendimiento y eficiencia.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================
+     8. BENEFITS
+     ======================================================== -->
+<section id="beneficios" class="section-pad relative">
+  <div class="container-x relative z-10">
+    <div class="text-center max-w-3xl mx-auto mb-14 flex flex-col gap-4">
+      <span class="eyebrow mx-auto" data-reveal>Beneficios</span>
+      <h2 class="h2-display" data-reveal>
+        Lo que cambia cuando tu negocio <span class="gradient-text">empieza a operar con IA</span>.
+      </h2>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 max-w-5xl mx-auto">
+      <div class="benefit" data-reveal><span class="check"><svg><use href="#i-check"/></svg></span><span>Respuestas instantáneas</span></div>
+      <div class="benefit" data-reveal><span class="check"><svg><use href="#i-check"/></svg></span><span>Atención 24/7</span></div>
+      <div class="benefit" data-reveal><span class="check"><svg><use href="#i-check"/></svg></span><span>Más leads atendidos</span></div>
+      <div class="benefit" data-reveal><span class="check"><svg><use href="#i-check"/></svg></span><span>Seguimiento automático</span></div>
+      <div class="benefit" data-reveal><span class="check"><svg><use href="#i-check"/></svg></span><span>Menos carga operativa</span></div>
+      <div class="benefit" data-reveal><span class="check"><svg><use href="#i-check"/></svg></span><span>Más eficiencia</span></div>
+      <div class="benefit" data-reveal><span class="check"><svg><use href="#i-check"/></svg></span><span>Más tiempo para crecer</span></div>
+      <div class="benefit" data-reveal><span class="check"><svg><use href="#i-check"/></svg></span><span>Más ventas, mismo equipo</span></div>
+    </div>
+
+    <div class="text-center mt-14 max-w-2xl mx-auto" data-reveal>
+      <p class="font-display text-2xl md:text-3xl leading-tight">
+        La IA no viene a reemplazar negocios.<br>
+        Viene a hacerlos <span class="gradient-text">más rápidos, más eficientes y más rentables</span>.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================
+     9. TESTIMONIALS
+     ======================================================== -->
+<section id="casos" class="section-pad relative overflow-hidden">
+  <div class="container-x relative z-10 mb-12">
+    <div class="text-center max-w-3xl mx-auto flex flex-col gap-4">
+      <span class="eyebrow mx-auto" data-reveal>Casos reales</span>
+      <h2 class="h2-display" data-reveal>
+        Resultados reales con <span class="gradient-text">automatización real</span>.
+      </h2>
+    </div>
+  </div>
+
+  <div class="marquee marquee-fast" data-reveal>
+    <div class="marquee-track">
+      <div class="glass-card testimonial">
+        <div class="stars"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></div>
+        <p class="text-base leading-relaxed">"Antes respondíamos manualmente cada consulta. Ahora la IA atiende automáticamente y nuestro equipo solo entra en conversaciones realmente importantes."</p>
+        <div class="testi-author">
+          <div class="avatar-grad">MG</div>
+          <div>
+            <div class="font-semibold text-sm">María G.</div>
+            <div class="text-xs" style="color: var(--text-muted)">Clínica Dental · Madrid</div>
+          </div>
+        </div>
+      </div>
+      <div class="glass-card testimonial">
+        <div class="stars"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></div>
+        <p class="text-base leading-relaxed">"Pasamos de perder leads por demora a responder en segundos. La diferencia en conversión fue inmediata."</p>
+        <div class="testi-author">
+          <div class="avatar-grad" style="background: var(--gradient-cool)">JR</div>
+          <div>
+            <div class="font-semibold text-sm">Javier R.</div>
+            <div class="text-xs" style="color: var(--text-muted)">Inmobiliaria · Buenos Aires</div>
+          </div>
+        </div>
+      </div>
+      <div class="glass-card testimonial">
+        <div class="stars"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></div>
+        <p class="text-base leading-relaxed">"La automatización nos ahorró decenas de horas operativas cada mes. Pudimos reasignar al equipo a tareas estratégicas."</p>
+        <div class="testi-author">
+          <div class="avatar-grad" style="background: linear-gradient(135deg,#22d3ee,#10b981)">LF</div>
+          <div>
+            <div class="font-semibold text-sm">Laura F.</div>
+            <div class="text-xs" style="color: var(--text-muted)">Ecommerce · CDMX</div>
+          </div>
+        </div>
+      </div>
+      <div class="glass-card testimonial">
+        <div class="stars"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></div>
+        <p class="text-base leading-relaxed">"Implementamos el agente IA en WhatsApp y la velocidad de respuesta cambió por completo el ritmo de ventas."</p>
+        <div class="testi-author">
+          <div class="avatar-grad" style="background: linear-gradient(135deg,#f59e0b,#ec4899)">DM</div>
+          <div>
+            <div class="font-semibold text-sm">Diego M.</div>
+            <div class="text-xs" style="color: var(--text-muted)">Servicios · Bogotá</div>
+          </div>
+        </div>
+      </div>
+      <div class="glass-card testimonial">
+        <div class="stars"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></div>
+        <p class="text-base leading-relaxed">"Cubo Labs entendió nuestro flujo en una sola reunión. La implementación fue rápida y el ROI llegó antes del mes."</p>
+        <div class="testi-author">
+          <div class="avatar-grad" style="background: linear-gradient(135deg,#8b5cf6,#3b82f6)">SP</div>
+          <div>
+            <div class="font-semibold text-sm">Sofía P.</div>
+            <div class="text-xs" style="color: var(--text-muted)">Restaurante · Santiago</div>
+          </div>
+        </div>
+      </div>
+      <!-- Duplicate for seamless loop -->
+      <div class="glass-card testimonial">
+        <div class="stars"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></div>
+        <p class="text-base leading-relaxed">"Antes respondíamos manualmente cada consulta. Ahora la IA atiende automáticamente y nuestro equipo solo entra en conversaciones realmente importantes."</p>
+        <div class="testi-author">
+          <div class="avatar-grad">MG</div>
+          <div>
+            <div class="font-semibold text-sm">María G.</div>
+            <div class="text-xs" style="color: var(--text-muted)">Clínica Dental · Madrid</div>
+          </div>
+        </div>
+      </div>
+      <div class="glass-card testimonial">
+        <div class="stars"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></div>
+        <p class="text-base leading-relaxed">"Pasamos de perder leads por demora a responder en segundos. La diferencia en conversión fue inmediata."</p>
+        <div class="testi-author">
+          <div class="avatar-grad" style="background: var(--gradient-cool)">JR</div>
+          <div>
+            <div class="font-semibold text-sm">Javier R.</div>
+            <div class="text-xs" style="color: var(--text-muted)">Inmobiliaria · Buenos Aires</div>
+          </div>
+        </div>
+      </div>
+      <div class="glass-card testimonial">
+        <div class="stars"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></div>
+        <p class="text-base leading-relaxed">"La automatización nos ahorró decenas de horas operativas cada mes. Pudimos reasignar al equipo a tareas estratégicas."</p>
+        <div class="testi-author">
+          <div class="avatar-grad" style="background: linear-gradient(135deg,#22d3ee,#10b981)">LF</div>
+          <div>
+            <div class="font-semibold text-sm">Laura F.</div>
+            <div class="text-xs" style="color: var(--text-muted)">Ecommerce · CDMX</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================
+     10. FAQ
+     ======================================================== -->
+<section id="faq" class="section-pad relative">
+  <div class="container-x relative z-10 max-w-3xl">
+    <div class="text-center mb-14 flex flex-col gap-4">
+      <span class="eyebrow mx-auto" data-reveal>FAQ</span>
+      <h2 class="h2-display" data-reveal>Preguntas frecuentes</h2>
+    </div>
+
+    <div class="flex flex-col" data-reveal>
+      <details class="faq-item">
+        <summary>
+          <span>¿La IA reemplaza a mi equipo?</span>
+          <span class="faq-icon"><svg width="14" height="14"><use href="#i-plus"/></svg></span>
+        </summary>
+        <div class="faq-answer">No. La IA automatiza tareas repetitivas para que tu equipo pueda enfocarse en actividades de mayor valor estratégico y comercial.</div>
+      </details>
+      <details class="faq-item">
+        <summary>
+          <span>¿Necesito conocimientos técnicos?</span>
+          <span class="faq-icon"><svg width="14" height="14"><use href="#i-plus"/></svg></span>
+        </summary>
+        <div class="faq-answer">No. Nosotros nos encargamos de toda la implementación, desde la configuración hasta el entrenamiento de los agentes y la conexión con tus herramientas.</div>
+      </details>
+      <details class="faq-item">
+        <summary>
+          <span>¿Cuánto tarda el proceso?</span>
+          <span class="faq-icon"><svg width="14" height="14"><use href="#i-plus"/></svg></span>
+        </summary>
+        <div class="faq-answer">Dependiendo del sistema, entre 7 y 21 días desde el diagnóstico inicial hasta la puesta en producción.</div>
+      </details>
+      <details class="faq-item">
+        <summary>
+          <span>¿Funciona con WhatsApp?</span>
+          <span class="faq-icon"><svg width="14" height="14"><use href="#i-plus"/></svg></span>
+        </summary>
+        <div class="faq-answer">Sí. Integramos automatizaciones y agentes IA con WhatsApp Business API para responder, calificar leads y agendar reuniones de forma 100% automática.</div>
+      </details>
+      <details class="faq-item">
+        <summary>
+          <span>¿Pueden conectarlo con mi CRM?</span>
+          <span class="faq-icon"><svg width="14" height="14"><use href="#i-plus"/></svg></span>
+        </summary>
+        <div class="faq-answer">Sí. Trabajamos con HubSpot, Pipedrive, Salesforce, Zoho y la mayoría de CRMs y plataformas comerciales del mercado.</div>
+      </details>
+      <details class="faq-item">
+        <summary>
+          <span>¿La solución es personalizada?</span>
+          <span class="faq-icon"><svg width="14" height="14"><use href="#i-plus"/></svg></span>
+        </summary>
+        <div class="faq-answer">Sí. Cada sistema se adapta a los procesos, tono de marca y objetivos específicos de tu negocio. No usamos plantillas genéricas.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================
+     11. FINAL CTA
+     ======================================================== -->
+<section id="contacto" class="section-pad relative overflow-hidden">
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+    <div class="gradient-blob blob-purple" style="width: 800px; height: 800px; top: 0; left: 50%; transform: translateX(-50%);"></div>
+    <div class="gradient-blob blob-cyan" style="width: 600px; height: 600px; bottom: -10%; right: 20%;"></div>
+  </div>
+  <div class="container-x relative z-10">
+    <div class="text-center max-w-4xl mx-auto flex flex-col items-center gap-7">
+      <span class="eyebrow" data-reveal>Es ahora</span>
+      <h2 class="h1-display" data-reveal>
+        La IA ya está cambiando la forma en que <span class="gradient-text">crecen las empresas</span>.<br>
+        <span style="color: var(--text-secondary); font-weight: 500; font-size: 0.7em">La pregunta es si tu negocio será de los primeros o de los últimos.</span>
+      </h2>
+      <p class="text-lg md:text-xl max-w-2xl" style="color: var(--text-secondary)" data-reveal>
+        Agendá una consultoría gratuita y descubrí qué procesos puedes automatizar esta misma semana.
+      </p>
+      <form id="lead-form" class="lead-form" data-reveal novalidate>
+        <div class="lead-form-field">
+          <label for="lf-company">Nombre de la empresa</label>
+          <input id="lf-company" name="company" type="text" required autocomplete="organization" placeholder="Ej: Cubo Labs S.A." />
+        </div>
+        <div class="lead-form-field">
+          <label for="lf-email">Email corporativo</label>
+          <input id="lf-email" name="email" type="email" required autocomplete="email" placeholder="nombre@empresa.com" />
+        </div>
+        <div class="lead-form-field">
+          <label for="lf-employees">Número de empleados</label>
+          <select id="lf-employees" name="employees" required>
+            <option value="" disabled selected>Seleccioná un rango</option>
+            <option value="10">1 - 10</option>
+            <option value="50">11 - 50</option>
+            <option value="200">51 - 200</option>
+            <option value="500">201 - 500</option>
+            <option value="1000">500+</option>
+          </select>
+        </div>
+        <button type="submit" class="btn-primary btn-pulse-glow text-base !py-4 !px-8 mt-2 lead-form-submit">
+          🚀 Agendar consultoría gratuita
+          <svg width="18" height="18"><use href="#i-arrow"/></svg>
+        </button>
+        <p class="lead-form-success" hidden>¡Gracias! Te contactamos en menos de 24h.</p>
+        <p class="lead-form-error" hidden>Hubo un error al enviar. Intentá de nuevo o escribinos por WhatsApp.</p>
+      </form>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8 w-full max-w-3xl text-sm" data-reveal>
+        <div class="font-display text-lg" style="color: var(--text-secondary)">Menos tareas manuales</div>
+        <div class="font-display text-lg gradient-text">Más eficiencia</div>
+        <div class="font-display text-lg" style="color: var(--text-secondary)">Más crecimiento</div>
+        <div class="font-display text-lg gradient-text">Más tiempo para vos</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================
+     FOOTER
+     ======================================================== -->
+<footer class="footer">
+  <div class="container-x">
+    <div class="grid md:grid-cols-12 gap-10">
+      <div class="md:col-span-5 flex flex-col gap-4">
+        <img src="assets/primary_logo_2.png" alt="Cubo Labs" class="footer-logo" />
+        <p class="text-sm max-w-xs" style="color: var(--text-secondary)">
+          Automatizamos tu negocio con IA para que vendas más trabajando menos. Sistemas inteligentes que trabajan 24/7 dentro de tu negocio.
+        </p>
+        <div class="flex gap-2 mt-2">
+          <a href="#" class="social-icon" aria-label="Instagram"><svg width="16" height="16"><use href="#i-instagram"/></svg></a>
+          <a href="#" class="social-icon" aria-label="LinkedIn"><svg width="16" height="16"><use href="#i-linkedin"/></svg></a>
+          <a href="#" class="social-icon" aria-label="X / Twitter"><svg width="14" height="14"><use href="#i-x-twitter"/></svg></a>
+          <a href="#" class="social-icon" aria-label="Sitio web"><svg width="16" height="16"><use href="#i-globe"/></svg></a>
+        </div>
+      </div>
+      <div class="md:col-span-2">
+        <h4 class="font-display text-sm uppercase tracking-widest mb-3" style="color: var(--text-muted)">Producto</h4>
+        <a href="#soluciones" class="footer-link">Soluciones</a>
+        <a href="#demos" class="footer-link">Demos</a>
+        <a href="#sectores" class="footer-link">Sectores</a>
+        <a href="#proceso" class="footer-link">Proceso</a>
+      </div>
+      <div class="md:col-span-2">
+        <h4 class="font-display text-sm uppercase tracking-widest mb-3" style="color: var(--text-muted)">Empresa</h4>
+        <a href="#casos" class="footer-link">Casos</a>
+        <a href="#faq" class="footer-link">FAQ</a>
+        <a href="#contacto" class="footer-link">Contacto</a>
+      </div>
+      <div class="md:col-span-3">
+        <h4 class="font-display text-sm uppercase tracking-widest mb-3" style="color: var(--text-muted)">¿Listo para automatizar?</h4>
+        <a href="#contacto" class="btn-primary text-sm !py-2.5 !px-4">🔥 Agendar llamada</a>
+      </div>
+    </div>
+    <div class="divider-line my-10"></div>
+    <div class="flex flex-col md:flex-row items-center justify-between gap-3 text-xs" style="color: var(--text-muted)">
+      <span>© 2026 Cubo Labs · Todos los derechos reservados</span>
+      <div class="flex gap-5">
+        <a href="#" class="footer-link !text-xs">Privacidad</a>
+        <a href="#" class="footer-link !text-xs">Términos</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ========================================================
+     SCRIPTS
+     ======================================================== -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="main.js"></script>
 </body>
 </html>
